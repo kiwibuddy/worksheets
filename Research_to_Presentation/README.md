@@ -2,6 +2,8 @@
 
 The worksheet HTML posts signups to Google Apps Script, which appends rows to your Google Sheet.
 
+**You still need to:** (1) run the Google steps below in your own account, (2) add `APPS_SCRIPT_URL` in Vercel, (3) submit a test email on the live site and confirm a row appears in the sheet. Pushing this repo alone does not create the sheet or activate capture.
+
 ## One-time Google setup (do this in the browser)
 
 1. **Sheet** — [sheets.google.com](https://sheets.google.com): new spreadsheet, row 1 headers: `Email`, `Timestamp`, `Source`.
