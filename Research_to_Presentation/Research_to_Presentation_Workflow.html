@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Research to a Finished Presentation. NotebookLM + Claude Code. Nathaniel Baldock</title>
+<title>From Research to a Finished Presentation. NotebookLM + Claude Chat. Nathaniel Baldock</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
@@ -112,7 +112,7 @@ body:not(.guided) .guide-dock .guide-dock-inner{ justify-content: center; }
 .path-block-body p:last-child{margin-bottom:0;}
 .path-block-body strong{color:var(--fg);font-weight:500;}
 
-/* Modal overlay — for the "what can Claude Code build" reader */
+/* Modal overlay — for the "what Claude can build" reader */
 .capabilities-trigger{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--bg);
@@ -374,7 +374,7 @@ a.logo-row:hover{ opacity: .78; }
 
 /* Tools needed bar */
 .tools-bar{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(3,1fr);
   border:1px solid var(--border);border-radius:var(--r);
   overflow:hidden;margin:22px 0 30px;background:var(--bg);
   box-shadow: var(--card-shadow);
@@ -453,7 +453,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:32px 0;}
 .bull li{font-size:12.5px;line-height:1.65;color:var(--fg-med);margin-bottom:5px;}
 .bull li::marker{color:var(--accent-bright);}
 
-/* Prompt box — user-typed natural language to Claude Code */
+/* Prompt box — user-typed natural language to Claude */
 .prompt-box{
   background: hsl(220, 18%, 10%);
   border-radius: var(--r);
@@ -465,7 +465,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:32px 0;}
   box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.2);
 }
 .prompt-box::before{
-  content:'TYPE THIS INTO CLAUDE CODE';
+  content:'TYPE THIS INTO CLAUDE';
   font-size:7.5px;font-weight:600;letter-spacing:3px;
   color: rgba(255, 255, 255, 0.25);
   position:absolute;top:12px;right:16px;
@@ -1279,8 +1279,8 @@ body.guided .journey-list{ max-height: min(50vh, 320px); }
 
     <div class="hero-meta">
       <div class="mi">NotebookLM</div><div class="msep"></div>
-      <div class="mi">Claude Code</div><div class="msep"></div>
-      <div class="mi">GitHub + Vercel</div><div class="msep"></div>
+      <div class="mi">Claude Chat</div><div class="msep"></div>
+      <div class="mi">Vercel</div><div class="msep"></div>
       <div class="mi">No coding required</div>
     </div>
 
@@ -1308,16 +1308,12 @@ body.guided .journey-list{ max-height: min(50vh, 320px); }
         <div class="tb-role">Reads your sources, connects ideas, and produces a structured research brief.</div>
       </div>
       <div class="tb-cell">
-        <div class="tb-name">Claude Code</div>
-        <div class="tb-role">Takes the research brief and builds an interactive HTML presentation.</div>
-      </div>
-      <div class="tb-cell">
-        <div class="tb-name">GitHub</div>
-        <div class="tb-role">Backs up your project and tracks every version.</div>
+        <div class="tb-name">Claude Chat</div>
+        <div class="tb-role">Takes the research brief and builds an interactive HTML presentation in an Artifact you can preview and download.</div>
       </div>
       <div class="tb-cell">
         <div class="tb-name">Vercel</div>
-        <div class="tb-role">Turns the GitHub project into a live URL you can share.</div>
+        <div class="tb-role">Turns your downloaded <code class="inline">index.html</code> into a live URL you can share (drag-and-drop, no Git required).</div>
       </div>
     </div>
 
@@ -1326,7 +1322,7 @@ body.guided .journey-list{ max-height: min(50vh, 320px); }
     </p>
 
     <p class="intro-para" style="font-size:13px;">
-      The flow goes one direction: <strong>your sources → NotebookLM → research brief → Claude Code → HTML file → GitHub → Vercel → live URL</strong>. Each phase produces one output that feeds the next.
+      The flow goes one direction: <strong>your sources → NotebookLM → research brief → Claude Chat (Artifact) → HTML file → Vercel → live URL</strong>. Each phase produces one output that feeds the next.
     </p>
 
     <!-- What you'll end up with -->
@@ -1469,7 +1465,7 @@ Rank the top 10 statistics by how likely they are to change the way an audience 
         <div class="step-title">Export a structured research brief</div>
       </div>
       <div class="step-body">
-        <p>This is the document that will feed directly into Claude Code. Use the Chat panel to generate it in one go:</p>
+        <p>This is the document that will feed directly into Claude Chat. Use the Chat panel to generate it in one go:</p>
 
         <div class="prompt-box">
           <div class="pb-prefix">Generate the research brief</div>
@@ -1484,8 +1480,14 @@ Rank the top 10 statistics by how likely they are to change the way an audience 
 Format this as clean markdown.</div>
         </div>
 
-        <p>Copy the entire output. Open a plain text editor (TextEdit on Mac set to plain text, or Notepad on Windows). Paste it in. Save it as <code class="inline">research-brief.md</code>.</p>
-        <p>This file is the handoff document. Everything Claude Code needs to build the presentation is now in it.</p>
+        <p>Copy the entire output. Open a plain text editor (TextEdit on Mac set to plain text, or Notepad on Windows). Paste it in.</p>
+        <p><strong>Easiest filename:</strong> save as <code class="inline">research-brief.txt</code>. Claude reads markdown inside a <code class="inline">.txt</code> file exactly the same way — and you avoid macOS silently turning your file into <code class="inline">research-brief.md.txt</code>.</p>
+        <p>If you prefer <code class="inline">research-brief.md</code>, that's fine too — just make sure the file really ends in <code class="inline">.md</code>.</p>
+        <div class="tip">
+          <div class="tip-lbl">Mac users (TextEdit)</div>
+          Before saving, choose <em>Format → Make Plain Text</em> (or TextEdit will save as Rich Text). In the save dialog, <strong>uncheck</strong> "If no extension is provided, use .txt" so macOS doesn't force an extra <code class="inline">.txt</code> on your filename.
+        </div>
+        <p>This file is the handoff document. Everything Claude needs to build the presentation is now in it.</p>
       </div>
     </div>
 
@@ -1509,15 +1511,18 @@ Format this as clean markdown.</div>
     <div class="step">
       <div class="step-head">
         <div class="step-num">Step 2.1</div>
-        <div class="step-title">Set up the Claude Code project</div>
+        <div class="step-title">Open Claude Chat and attach the research brief</div>
       </div>
       <div class="step-body">
-        <p>Create a new folder on your computer for this presentation. Use lowercase, hyphens between words. For example: <code class="inline">ai-discipleship-seminar</code> or <code class="inline">family-tech-talk</code>.</p>
-        <p>Move <code class="inline">research-brief.md</code> into this folder. If you have a screenshot of an existing presentation whose visual style you want to match, drop that in the folder too (call it <code class="inline">reference-design.png</code>).</p>
-        <p>Open the Claude desktop app. Click the <em>Code</em> tab. Add the folder as a new project.</p>
+        <p>Go to <a href="https://claude.ai" target="_blank">claude.ai</a> and start a <strong>new chat</strong>. Drag your <code class="inline">research-brief.txt</code> (or <code class="inline">research-brief.md</code>) into the message box so it attaches to the conversation.</p>
+        <p>If you have a screenshot of an existing deck whose look you want to match, attach that image here too and say you want the presentation to echo that style.</p>
         <div class="tip">
-          <div class="tip-lbl">If you're new to Claude Code</div>
-          Claude Code is built into the Claude desktop app (the Code tab at the top). You don't install anything extra. If you haven't used it before, the companion guide "From a Claude.ai conversation to your own live website" walks through the setup step by step.
+          <div class="tip-lbl">What is an Artifact?</div>
+          When you ask Claude to build HTML, it often opens an <strong>Artifact</strong> — a live preview on the right side of the screen. You click through your slides there, same as in a browser. There are no project folders, no <code class="inline">/init</code> commands, and nothing to install. When you're done, you download a single <code class="inline">index.html</code> file.
+        </div>
+        <div class="note">
+          <div class="note-lbl">When Claude Code is still the right tool</div>
+          If you have a <strong>folder of your own images</strong> (logos, charts, photos) that must sit next to the HTML on disk, use Claude Code on the desktop app instead — it can work with local files. For a self-contained, text-and-CSS presentation, Claude Chat is the faster path.
         </div>
       </div>
     </div>
@@ -1526,38 +1531,14 @@ Format this as clean markdown.</div>
     <div class="step">
       <div class="step-head">
         <div class="step-num">Step 2.2</div>
-        <div class="step-title">Run /init and set the project context</div>
-      </div>
-      <div class="step-body">
-        <p>Type <code class="inline">/init</code> in Claude Code. It scans your folder and creates a <code class="inline">CLAUDE.md</code> briefing file. Then refine it:</p>
-
-        <div class="prompt-box">
-          <div class="pb-prefix">Set the project context</div>
-          <div class="pb-text">Update CLAUDE.md with these notes:
-
-- This project is an interactive HTML presentation about <strong>[your topic]</strong>
-- The audience is <strong>[who's in the room]</strong>
-- The output is a single self-contained index.html file
-- All statistics must include source attribution with clickable URLs
-- Visual style: match the reference-design.png if present, otherwise use a professional dark-header + light-body design
-- Always plan changes before writing code. Show me the plan, wait for me to say "go"
-- Use plain English commit messages</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 2.3 -->
-    <div class="step">
-      <div class="step-head">
-        <div class="step-num">Step 2.3</div>
         <div class="step-title">The one-shot build (the big prompt)</div>
       </div>
       <div class="step-body">
-        <p>This is the prompt that builds the whole presentation. Paste it into Claude Code:</p>
+        <p>Paste the prompt below into the same chat. Your research brief is already attached above.</p>
 
         <div class="prompt-box">
           <div class="pb-prefix">Build the presentation</div>
-          <div class="pb-text">Read research-brief.md. Build a single self-contained index.html presentation.
+          <div class="pb-text">Read the attached research brief. Build a single self-contained index.html presentation.
 
 <strong>Structure:</strong>
 - A launch screen with the title, my name, and a start button
@@ -1572,21 +1553,52 @@ Format this as clean markdown.</div>
 - A progress bar or slide counter
 
 <strong>Visual style:</strong>
+- Import Tailwind CSS via CDN for styling so the deck looks polished and modern (similar to a high-end product site)
+- Use Inter for headings and Fraunces for body text via Google Fonts
 - 16:9 aspect ratio slides
 - Dark hero slides for section openers, light slides for content
 - Animated text entrance (fade-up on slide change)
-- Clean sans-serif headings, serif body text
-- If reference-design.png exists in the folder, match its colour palette and typography
+- Include smooth CSS transitions for slide changes and for citation modal open/close
+- If I attached a reference image for look-and-feel, match its colour palette and typography as closely as you can
 
 <strong>Data rules:</strong>
-- Use ONLY statistics from research-brief.md. Do not invent numbers.
+- Use ONLY statistics from the attached research brief. Do not invent numbers.
 - Every citation modal must include the source URL from the brief
 - Mark confidence levels: high, medium, or low (from the brief)
 
 Plan the slide order first. Show me a numbered list of slide titles with which stats go on each. Stop and wait for me to say "go".</div>
         </div>
 
+        <div class="warn">
+          <div class="warn-lbl">Images and placeholders</div>
+          Stick to text, typography, and CSS (and inline SVG if helpful). If you ask for photos or stock images, Claude will usually add <strong>placeholders</strong> — fine for layout, not real pictures. For a single-file deck, that keeps things simple.
+        </div>
+
         <p>Read the plan carefully. Push back on ordering, missing slides, or stats assigned to the wrong slide. Once the plan looks right, type <strong>"go"</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Step 2.3 -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">Step 2.3</div>
+        <div class="step-title">Review and refine each slide</div>
+      </div>
+      <div class="step-body">
+        <p>The presentation renders in the <strong>Artifact</strong> panel on the right. Click through every slide there (it behaves like a real web page). For each one, check:</p>
+        <ul class="bull">
+          <li>Is the headline clear in under 5 seconds?</li>
+          <li>Does the stat card open a modal with the correct source?</li>
+          <li>Is the source URL clickable and correct?</li>
+          <li>Does the speaker note (press N) say what you'd actually say out loud?</li>
+        </ul>
+        <p>Reply in the chat to request changes — be specific:</p>
+        <ul class="bull">
+          <li><em>"Make slide 3 a full-bleed dark slide with the stat overlaid in large text"</em></li>
+          <li><em>"The modal on slide 7 has the wrong URL. Change it to [correct URL]"</em></li>
+          <li><em>"Add a new slide between 4 and 5 about [topic], using this stat from the brief: [quote the stat]"</em></li>
+        </ul>
+        <p>When you're happy with the draft (you can add the real QR in Step 2.4 after you have a live URL), click the <strong>Download</strong> icon at the bottom of the Artifact to save <code class="inline">index.html</code> to your computer. You'll upload that file in Phase 3.</p>
       </div>
     </div>
 
@@ -1594,41 +1606,17 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
     <div class="step">
       <div class="step-head">
         <div class="step-num">Step 2.4</div>
-        <div class="step-title">Review and refine each slide</div>
+        <div class="step-title">Add the QR code and download again</div>
       </div>
       <div class="step-body">
-        <p>Claude Code has a built-in HTML preview pane. Open <code class="inline">index.html</code> in it and click through each slide. For each one, check:</p>
-        <ul class="bull">
-          <li>Is the headline clear in under 5 seconds?</li>
-          <li>Does the stat card open a modal with the correct source?</li>
-          <li>Is the source URL clickable and correct?</li>
-          <li>Does the speaker note (press N) say what you'd actually say out loud?</li>
-        </ul>
-        <p>Ask Claude to fix specific slides by name:</p>
-        <ul class="bull">
-          <li><em>"Make slide 3 a full-bleed dark slide with the stat overlaid in large text"</em></li>
-          <li><em>"The modal on slide 7 has the wrong URL. Change it to [correct URL]"</em></li>
-          <li><em>"Add a new slide between 4 and 5 about [topic], using this stat from the brief: [quote the stat]"</em></li>
-        </ul>
-        <p>Commit after each round of changes. This gives you undo points if anything goes wrong.</p>
-      </div>
-    </div>
-
-    <!-- Step 2.5 -->
-    <div class="step">
-      <div class="step-head">
-        <div class="step-num">Step 2.5</div>
-        <div class="step-title">Add the QR code to the final slide</div>
-      </div>
-      <div class="step-body">
-        <p>Once your Vercel URL is live (after Phase 3), come back and ask Claude:</p>
+        <p><strong>Do this after Phase 3</strong> when you have your real Vercel URL. Stay in the same chat (or start a new chat and re-attach your latest <code class="inline">index.html</code> if the session got long).</p>
 
         <div class="prompt-box">
           <div class="pb-prefix">Generate the QR code</div>
           <div class="pb-text">Add a QR code to the closing slide that links to <strong>[your-vercel-url]</strong>. Generate it as an inline SVG so it doesn't depend on an external service. Make it large enough to scan from a few metres away. Add a small label underneath: "Scan to take this presentation home."</div>
         </div>
 
-        <p>Commit and push after adding the QR code. The live site updates within 30 seconds.</p>
+        <p>When the Artifact updates, click <strong>Download</strong> again to save the new <code class="inline">index.html</code>. In Phase 3, Step 3.3, you'll drag this updated file back onto Vercel so the live site shows the QR code.</p>
       </div>
     </div>
 
@@ -1644,7 +1632,7 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
       <div class="phase-text">
         <div class="phase-kicker">Phase 3 · Deploy</div>
         <div class="phase-title">Put your presentation on the internet</div>
-        <div class="phase-sub">From a file on your computer to a live URL anyone can visit. About 10 minutes the first time.</div>
+        <div class="phase-sub">From a file on your computer to a live URL anyone can visit. About 5 minutes the first time.</div>
       </div>
     </div>
 
@@ -1652,20 +1640,13 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
     <div class="step">
       <div class="step-head">
         <div class="step-num">Step 3.1</div>
-        <div class="step-title">Push to GitHub</div>
+        <div class="step-title">Create a free Vercel account</div>
       </div>
       <div class="step-body">
-        <p>If you haven't connected this project to GitHub yet, ask Claude Code:</p>
-
-        <div class="prompt-box">
-          <div class="pb-prefix">First push to GitHub</div>
-          <div class="pb-text">I want to put this project on GitHub for the first time as a private repository. Walk me through it step by step. For each step, tell me what we're doing and why, give me the command, and wait for me to confirm before moving on.</div>
-        </div>
-
-        <p>Or open GitHub Desktop, choose <em>File → Add Local Repository</em>, point it at your project folder, click <em>Create Repository</em>, then <em>Publish Repository</em> (tick "Keep this code private").</p>
-        <div class="warn">
-          <div class="warn-lbl">Always private first</div>
-          Start with a private repository. Public means anyone can read your files. You can make it public later if you choose.
+        <p>Go to <a href="https://vercel.com" target="_blank">vercel.com</a> and sign up. You can use your email — <strong>no GitHub account is required</strong> for this beginner path.</p>
+        <div class="note">
+          <div class="note-lbl">Pro workflow (optional)</div>
+          If your organisation already uses <strong>GitHub</strong>, you can connect a repository to Vercel instead: every <code class="inline">git push</code> redeploys automatically. This worksheet uses drag-and-drop so you reach a live URL without touching version control.
         </div>
       </div>
     </div>
@@ -1674,22 +1655,15 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
     <div class="step">
       <div class="step-head">
         <div class="step-num">Step 3.2</div>
-        <div class="step-title">Deploy to Vercel</div>
+        <div class="step-title">Drag your file to deploy</div>
       </div>
       <div class="step-body">
-        <p>Go to <a href="https://vercel.com/new" target="_blank">vercel.com/new</a>. If you signed up with GitHub, your repositories appear automatically. Click <em>Import</em> on the one you just created.</p>
-        <p>Vercel asks configuration questions. For a single HTML presentation:</p>
-        <ul class="bull">
-          <li><strong>Framework Preset:</strong> Other</li>
-          <li><strong>Build Command:</strong> leave blank</li>
-          <li><strong>Output Directory:</strong> type a single dot: <code class="inline">.</code></li>
-          <li><strong>Install Command:</strong> leave blank</li>
-        </ul>
-        <p>Click <em>Deploy</em>. Within 30 seconds your presentation is live at a URL like <code class="inline">your-project-name.vercel.app</code>.</p>
+        <p>Open the Vercel dashboard. Click <strong>Add New… → Project</strong> (wording may vary slightly in the interface). Look for the option to <strong>import</strong> or <strong>upload</strong> a static site — then <strong>drag the folder</strong> that contains your <code class="inline">index.html</code> (or drag <code class="inline">index.html</code> itself if the uploader accepts a single file) into the upload area.</p>
+        <p>Vercel deploys static HTML immediately. Within about 30 seconds you get a live URL like <code class="inline">your-project-name.vercel.app</code>. Copy that URL — you'll paste it into Claude in Step 2.4.</p>
 
         <div class="aha">
           <div class="aha-lbl">What just happened</div>
-          Vercel is now watching your GitHub repository. Every time you push a change, the live site updates automatically. Edit a slide, commit, push, and 30 seconds later the audience sees the new version. No re-uploading, no re-deploying.
+          That's it: no Git commands, no repository to configure. Vercel hosts your file and gives you a link you can open on any device. When you change the HTML later, upload the new version to the <strong>same Vercel project</strong> so your URL stays the same.
         </div>
       </div>
     </div>
@@ -1701,7 +1675,8 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
         <div class="step-title">Go back and add the QR code</div>
       </div>
       <div class="step-body">
-        <p>Now that you have the live URL, go back to Step 2.5 and run the QR code prompt with your actual URL. Commit and push. Your final slide now has a scannable link to the live presentation.</p>
+        <p>Now that you have the live URL, go to <strong>Step 2.4</strong> in Claude Chat: paste your real URL into the QR code prompt. Download the updated <code class="inline">index.html</code> from the Artifact.</p>
+        <p>Return here and <strong>upload or replace</strong> that file in your existing Vercel project (same drag-and-drop flow as Step 3.2). After the redeploy finishes, open your URL again — the final slide should show a scannable QR code pointing at your live presentation.</p>
       </div>
     </div>
 
@@ -1739,7 +1714,8 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
         <div class="step-title">Prepare an offline backup</div>
       </div>
       <div class="step-body">
-        <p>The HTML file works without internet. Open the <code class="inline">index.html</code> file directly from your computer in a browser (double-click it in Finder or Explorer). Everything runs locally. If the venue has unreliable wifi, present from the local file instead of the URL. The experience is identical.</p>
+        <p>The HTML file works without internet. Open the <code class="inline">index.html</code> file directly from your computer in a browser (double-click it in Finder or Explorer). The slide structure, navigation, modals, and speaker notes all run locally. If the venue has unreliable Wi-Fi, present from the local file instead of the URL.</p>
+        <p><strong>One caveat:</strong> if you used <strong>Tailwind via CDN</strong> and <strong>Google Fonts</strong> (as in the build prompt), those load from the internet when you're online. Offline, the deck still works — layout and interactions are fine — but typography may fall back to similar system fonts. For a fully offline-matched backup, ask Claude to <strong>inline the critical CSS and font files</strong> into the HTML before you download.</p>
       </div>
     </div>
 
@@ -1762,7 +1738,7 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
         <div class="step-title">Share after the event</div>
       </div>
       <div class="step-body">
-        <p>Post the URL on social media, email it to attendees, or embed it in a follow-up newsletter. The presentation is a living document. You can update slides, add new stats, or fix errors after the event, and every link already shared will show the updated version automatically.</p>
+        <p>Post the URL on social media, email it to attendees, or embed it in a follow-up newsletter. The presentation can keep evolving: edit in Claude Chat, download the new <code class="inline">index.html</code>, and drag it onto the same Vercel project to redeploy. The public URL usually stays the same, so people who saved your link see the updated version.</p>
       </div>
     </div>
 
@@ -1855,7 +1831,7 @@ Plan the slide order first. Show me a numbered list of slide titles with which s
         <div class="step-title">"Claude invented a statistic that isn't in my research brief"</div>
       </div>
       <div class="step-body">
-        <p>This happens when the prompt doesn't explicitly restrict Claude to the brief. Check every number in the presentation against <code class="inline">research-brief.md</code>. If a stat isn't in the brief, ask Claude to remove it or replace it with one that is. The build prompt includes a "use ONLY statistics from research-brief.md" instruction for this reason.</p>
+        <p>This happens when the prompt doesn't explicitly restrict Claude to the brief. Check every number in the presentation against your saved research brief file. If a stat isn't in the brief, ask Claude to remove it or replace it with one that is. The build prompt includes a "use ONLY statistics from the attached research brief" instruction for this reason.</p>
       </div>
     </div>
 
@@ -1958,7 +1934,7 @@ function doGet(e) {
           <div class="cmd-line"><span class="comment">Search for this text in the HTML file:</span></div>
           <div class="cmd-line">YOUR_GOOGLE_APPS_SCRIPT_URL</div>
         </div>
-        <p>Replace it with your Web App URL. Save the file. Upload it to GitHub and Vercel as normal. Emails will now appear in your spreadsheet within seconds of submission.</p>
+        <p>Replace it with your Web App URL. Save the file. Get the updated <code class="inline">index.html</code> from Claude Chat (Artifact download), then drag it onto your existing Vercel project to redeploy. Emails will now appear in your spreadsheet within seconds of submission.</p>
       </div>
     </div>
 
@@ -1976,16 +1952,16 @@ function doGet(e) {
       <div class="cmd-line"><span class="prompt">3.</span>Generate Audio Overview, download, re-upload as source (narrative trick)</div>
       <div class="cmd-line"><span class="prompt">4.</span>Export a structured research brief as markdown</div>
       <div class="cmd-line">&nbsp;</div>
-      <div class="cmd-line"><span class="comment"># BUILD (Claude Code)</span></div>
-      <div class="cmd-line"><span class="prompt">5.</span>Create project folder, drop in research-brief.md + optional reference-design.png</div>
-      <div class="cmd-line"><span class="prompt">6.</span>Open in Claude Code, run <span style="color:var(--lime);">/init</span>, set project context</div>
-      <div class="cmd-line"><span class="prompt">7.</span>Run the one-shot build prompt. Review plan, say "go"</div>
-      <div class="cmd-line"><span class="prompt">8.</span>Refine slide by slide, commit after each round</div>
+      <div class="cmd-line"><span class="comment"># BUILD (Claude Chat)</span></div>
+      <div class="cmd-line"><span class="prompt">5.</span>Attach research-brief.txt to a new chat on claude.ai</div>
+      <div class="cmd-line"><span class="prompt">6.</span>Paste the one-shot build prompt — review slide plan, say "go"</div>
+      <div class="cmd-line"><span class="prompt">7.</span>Refine slide by slide in the Artifact panel on the right</div>
+      <div class="cmd-line"><span class="prompt">8.</span>Download index.html from the Artifact</div>
       <div class="cmd-line">&nbsp;</div>
-      <div class="cmd-line"><span class="comment"># DEPLOY</span></div>
-      <div class="cmd-line"><span class="prompt">9.</span>Push to GitHub (private)</div>
-      <div class="cmd-line"><span class="prompt">10.</span>Import at vercel.com/new, Output Directory: <span style="color:var(--lime);">.</span> , Deploy</div>
-      <div class="cmd-line"><span class="prompt">11.</span>Add QR code to final slide with live URL, push again</div>
+      <div class="cmd-line"><span class="comment"># DEPLOY (Vercel)</span></div>
+      <div class="cmd-line"><span class="prompt">9.</span>Go to vercel.com, create a free account</div>
+      <div class="cmd-line"><span class="prompt">10.</span>Drag your folder (with index.html) onto Vercel — live in ~30 seconds</div>
+      <div class="cmd-line"><span class="prompt">11.</span>Add QR code in Step 2.4 with live URL, re-download, re-upload to Vercel</div>
       <div class="cmd-line">&nbsp;</div>
       <div class="cmd-line"><span class="comment"># PRESENT</span></div>
       <div class="cmd-line"><span class="prompt">12.</span>Test on the actual device the day before</div>
