@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const srcDir = path.join(root, 'Research_to_Presentation');
 const outDir = path.join(root, 'Research_to_Presentation-dist');
-const htmlName = 'Research_to_Presentation_Workflow.html';
+const htmlName = 'index.html';
 
 if (!fs.existsSync(srcDir)) {
   console.error('Missing directory:', srcDir);

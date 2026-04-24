@@ -3,6 +3,6 @@
   "private": true,
   "scripts": {
     "build": "node scripts/inject-apps-script-url.mjs",
-    "verify:email-build": "rm -rf Research_to_Presentation-dist && APPS_SCRIPT_URL='https://script.google.com/macros/s/verify/exec' node scripts/inject-apps-script-url.mjs && node -e \"const fs=require('fs');const h=fs.readFileSync('Research_to_Presentation-dist/Research_to_Presentation_Workflow.html','utf8');if(!h.includes('verify/exec'))process.exit(1);\""
+    "verify:email-build": "rm -rf Research_to_Presentation-dist && APPS_SCRIPT_URL='https://script.google.com/macros/s/verify/exec' node scripts/inject-apps-script-url.mjs && node -e \"const fs=require('fs');const h=fs.readFileSync('Research_to_Presentation-dist/index.html','utf8');if(!h.includes('verify/exec'))process.exit(1);\""
   }
 }
