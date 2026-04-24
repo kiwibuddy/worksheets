@@ -1,29 +1,129 @@
 # Worksheet HTML — Full Build Specification
 
-Use this document to build a new worksheet in Claude Chat. Paste the relevant sections as context, then provide your content. Claude will produce a complete, self-contained `index.html` file matching the design system below.
+Use this document to build a new worksheet in Claude Chat. Fill in **Section 1 (your brand details)** first, then paste the whole document into Claude Chat with your content brief. Claude will produce a complete, self-contained `index.html` ready to deploy.
 
 ---
 
-## 1. What this produces
+## SECTION A — YOUR BRAND DETAILS
+### Fill these in before sending to Claude
 
-A single `index.html` file with:
-- A gated landing hero (optional email capture, always skippable)
-- A guided step-by-step mode (one chapter at a time, progress saved in localStorage)
-- A "Read full page" mode (all chapters visible, scrollable, printable)
-- A floating bottom dock with mode toggle + chapter navigation
-- A fixed `?` help button that opens a booking modal
-- A footer linking to `nathanielbaldock.com`
-- Fully mobile-responsive, no build step, no dependencies
+These values replace every placeholder throughout the generated file. Define them once here so Claude uses them consistently.
 
-Deploy by dragging `index.html` onto a Vercel project. No server, no framework.
+| Field | Your value |
+|---|---|
+| **Creator name** | e.g. Jane Smith |
+| **Creator initials** (1–2 chars for logo mark) | e.g. JS |
+| **Creator tagline** (appears below name in header) | e.g. PRACTICAL BUSINESS TOOLS · 2026 |
+| **Creator website URL** | e.g. https://www.janesmith.com |
+| **Creator website display text** | e.g. janesmith.com |
+| **Support/booking URL** | e.g. Google Calendar link, Calendly, or mailto: |
+| **Support button label** | e.g. "Book a free 30-min call →" or "Email me →" |
+| **Support modal body text** | e.g. "Got stuck? Book a free 15-minute call and I'll walk you through it." |
+| **Footer tagline** | e.g. "Practical Business Tools" (appears in the lime strip) |
+| **Email capture: source label** | e.g. "Jane Smith Worksheet" (logged to your Sheet alongside each email) |
+| **Apps Script URL** | Your deployed Google Web App URL (see Section B) |
+| **Gate modal heading** | e.g. "Want updates when new guides drop?" |
+| **Gate modal sub-text** | e.g. "Add your email and I'll send you new tools as I release them. No spam, unsubscribe any time." |
+| **Gate submit button label** | e.g. "Yes, keep me posted →" |
+| **Gate privacy line** | e.g. "Your email is stored in a private spreadsheet. It's never shared or sold." |
 
 ---
 
-## 2. Design tokens — copy these exactly
+## SECTION B — EMAIL CAPTURE SETUP
+### One-time Google setup before deploying
 
+The email capture sends signups to a Google Sheet via a Google Apps Script. You only set this up once and reuse the same URL for all your worksheets.
+
+**Step 1 — Create your Google Sheet**
+1. Go to [sheets.google.com](https://sheets.google.com) and create a new spreadsheet
+2. Name it something like "Worksheet Email Signups"
+3. Set row 1 headers: `Email` | `Timestamp` | `Source`
+
+**Step 2 — Create the Apps Script**
+1. Inside the sheet: **Extensions → Apps Script**
+2. Delete all existing code and paste this:
+
+```javascript
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([data.email, data.timestamp, data.source]);
+    return ContentService
+      .createTextOutput(JSON.stringify({status:'ok'}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({status:'error'}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput('Active.');
+}
+```
+
+3. Save the script (name it anything, e.g. "Email capture")
+
+**Step 3 — Deploy as a Web App**
+1. Click **Deploy → New deployment**
+2. Click the gear icon next to "Type" → select **Web app**
+3. Set **Execute as**: Me
+4. Set **Who has access**: Anyone
+5. Click **Deploy** → copy the Web App URL (ends in `/exec`)
+6. Confirm it's live: paste the URL in a new browser tab — you should see `Active.`
+
+**Step 4 — Paste the URL into your worksheet**
+In the generated `index.html`, find:
+```js
+var APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+```
+Replace the placeholder with your copied URL. Or tell Claude your URL in the build prompt and it will be inserted automatically.
+
+> **Can I skip email capture entirely?** Yes. Set `APPS_SCRIPT_URL` to an empty string `''`. The gate and skip button still work — it just won't send anything to a sheet.
+
+---
+
+## SECTION C — CONTENT BRIEF
+### What to tell Claude about this specific worksheet
+
+| Field | Your value |
+|---|---|
+| **Worksheet title** (hero heading) | e.g. "From scattered notes to a published blog post." |
+| **Hero subtitle** | e.g. "How to turn rough ideas into polished, SEO-ready articles in under two hours." |
+| **Category line** (top-left of hero) | e.g. "Write · Edit · Publish" |
+| **Skill / time line** (top-right of hero) | e.g. "Beginner · 1-2 hours" |
+| **Hero stats** (4 numbers with short labels) | e.g. 6 steps, 2 hrs, 1 file, ∞ reuse |
+| **Hero description paragraph** | 2-3 sentences on what the reader will achieve |
+| **Hero meta tags** (tools / keywords strip) | e.g. ChatGPT · Notion · WordPress · No coding required |
+| **Phases and steps** | List each phase, its name, and the steps inside it |
+| **Step content** | Text, prompts, notes, warnings, tips for each step |
+| **Reference section** | Prompts, cheat sheets, glossary, scripts to include |
+| **Worksheet edition label** | e.g. "Blog edition · 2026" (shown in footer) |
+| **localStorage key** | Unique slug e.g. `janesmith-blog-workflow-v1` |
+| **Gate localStorage key** | Unique slug e.g. `janesmith-blog-gate-v1` |
+
+---
+
+## SECTION D — DESIGN SYSTEM
+### Copy these exactly into the generated file
+
+### Fonts
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+```
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+```
 
+- **Fraunces** — serif, all headings, titles, phase numbers, step titles
+- **Inter** — sans-serif, all body text, labels, UI elements
+- **JetBrains Mono** — monospace, code, prompts, terminal commands
+
+### CSS variables
+```css
 :root {
   --bg:             #ffffff;
   --bg-warm:        hsl(42, 40%, 98%);
@@ -62,228 +162,192 @@ Deploy by dragging `index.html` onto a Vercel project. No server, no framework.
 }
 ```
 
-**Fonts:**
-- `Fraunces` — serif, used for all headings, titles, phase numbers, step titles
-- `Inter` — sans-serif, used for all body text, labels, UI
-- `JetBrains Mono` — monospace, used for code, prompts, terminal commands
-
-**Phase colours** (numbered discs 1–5): `--p1` through `--p5` in CSS. Use `class="ph-1"` through `class="ph-5"` on `.phase-num` elements.
+**Phase colours** (numbered discs): `--p1` through `--p5`. Apply via `class="ph-1"` through `class="ph-5"` on `.phase-num` elements.
 
 ---
 
-## 3. Page structure
+## SECTION E — PAGE STRUCTURE
 
 ```
 <body class="guided gated">
   <div class="page">
-    [? help button — fixed]
+    [? help button — fixed, top right]
     [site header]
-    [hero / welcome chapter  — id="ch-welcome"]
+    [hero / welcome chapter — id="ch-welcome", class="is-active"]
     <div class="body">
-      [chapter 2: orientation/context]
+      [chapter: orientation/context — id="ch-context"]
       <hr class="div">
-      [phase chapters: ch-p1, ch-p2, ch-p3 …]
+      [phase chapters: ch-p1, ch-p2, ch-p3 … one per phase]
       <hr class="div"> (between each phase)
-      [reference chapter]
-      [checklist/journey chapter]
+      [reference chapter — id="ch-ref"]
+      [checklist chapter — id="ch-checklist", always last]
     </div>
     [footer]
   </div>
-  [guide dock nav — outside .page]
-  [modals: help, email gate, mode choice]
-  [scripts]
+  [guide dock nav — OUTSIDE .page]
+  [modals: help, email gate, mode choice — OUTSIDE .page]
+  [script 1: guide engine]
+  [script 2: gate + help engine]
 </body>
 ```
 
-**Key rules:**
-- `body` starts with classes `guided gated` — JS removes them as needed
-- Every chapter is `<div class="guide-chapter" id="ch-NAME" data-g-label="Tab label">`
-- The welcome/hero chapter sits outside `.body`, directly inside `.page`
+**Rules:**
+- `body` starts with `guided gated` — JS removes `gated` when the user passes the gate
+- Hero chapter sits directly inside `.page`, before `.body`
 - All content chapters sit inside `.body`
-- The guide dock `<nav>` sits outside `.page`, after the closing `</div>`
+- Guide dock `<nav>` sits after the closing `</div>` of `.page`
 
 ---
 
-## 4. Content you must supply when building a new worksheet
+## SECTION F — COMPONENT LIBRARY
 
-Tell Claude these things before generating:
-
-| Field | Example |
-|---|---|
-| **Worksheet title** (hero heading) | "From scattered research to an interactive presentation." |
-| **Hero subtitle** | "How to turn a pile of PDFs and articles into a polished, source-verified, shareable HTML presentation." |
-| **Category line** (top of hero) | "Research · Build · Present" and "Beginner · 2-4 hours first run" |
-| **Hero stats** (4 numbers with labels) | 50+, 4, 1, ∞ |
-| **Hero description paragraph** | 2-3 sentences on the outcome |
-| **Hero meta tags** (tools list) | NotebookLM · Claude Chat · Vercel · No coding required |
-| **Chapter/phase count and titles** | Phase 1: Research, Phase 2: Build, etc. |
-| **Steps per phase** | Step 1.1, 1.2, 1.3… |
-| **Step content** | Text, prompts, notes, warnings, tips |
-| **Reference section content** | Scripts, cheat sheets, glossary |
-| **Checklist items** | One per step, auto-generated from step IDs |
-| **Your name** | Nathaniel Baldock |
-| **Your website** | https://www.nathanielbaldock.com |
-| **Version string** | v1.0 · Research edition · 2026 |
-| **Booking/help URL** | Google Calendar appointments link |
-| **Apps Script URL** | Your deployed Google Web App URL (for email capture) |
-| **localStorage key** | Unique string e.g. `nathanielb-worksheet-name-v1` |
-| **Gate localStorage key** | Unique string e.g. `nathanielb-worksheet-name-gate-v1` |
-
----
-
-## 5. Component reference
-
-### 5.1 Site header
-
+### F1 — Site header
 ```html
 <div class="site-hdr">
-  <a class="logo-row" href="YOUR_WEBSITE" target="_blank" rel="noopener">
-    <div class="logo-mark">N</div>
+  <a class="logo-row" href="[CREATOR_WEBSITE]" target="_blank" rel="noopener" aria-label="[CREATOR_NAME]">
+    <div class="logo-mark">[CREATOR_INITIALS]</div>
     <div>
-      <div class="logo-name">Nathaniel Baldock</div>
-      <div class="logo-sub">PRACTICAL AI WORKFLOWS · 2026</div>
+      <div class="logo-name">[CREATOR_NAME]</div>
+      <div class="logo-sub">[CREATOR_TAGLINE]</div>
     </div>
   </a>
-  <div class="hdr-badge">Workflow · [Worksheet Name]</div>
+  <div class="hdr-badge">Workflow · [WORKSHEET_NAME]</div>
 </div>
 ```
 
-### 5.2 Hero (welcome chapter)
-
+### F2 — Hero (welcome chapter)
 ```html
 <div class="guide-chapter is-active" id="ch-welcome" data-g-label="Welcome">
 <div class="hero">
   <div class="hero-category">
-    <span>[Category] · [Sub-category]</span><div class="cat-rule"></div><span>[Skill level] · [Time estimate]</span>
+    <span>[CATEGORY_LINE]</span><div class="cat-rule"></div><span>[SKILL_TIME_LINE]</span>
   </div>
-  <div class="hero-title">[Main title]<br><em>[Italic subtitle]</em></div>
-  <div class="hero-sub">[One-line description]</div>
+  <div class="hero-title">[HERO_TITLE_LINE_1]<br><em>[HERO_TITLE_LINE_2_ITALIC]</em></div>
+  <div class="hero-sub">[HERO_SUBTITLE]</div>
 
   <div class="hero-stats">
-    <div class="hs"><div class="hs-num">[Stat]</div><div class="hs-text">[Label line 1]<br>[Label line 2]</div></div>
-    <!-- repeat × 4 -->
+    <div class="hs"><div class="hs-num">[STAT_1]</div><div class="hs-text">[STAT_1_LABEL_LINE_1]<br>[STAT_1_LABEL_LINE_2]</div></div>
+    <div class="hs"><div class="hs-num">[STAT_2]</div><div class="hs-text">[STAT_2_LABEL_LINE_1]<br>[STAT_2_LABEL_LINE_2]</div></div>
+    <div class="hs"><div class="hs-num">[STAT_3]</div><div class="hs-text">[STAT_3_LABEL_LINE_1]<br>[STAT_3_LABEL_LINE_2]</div></div>
+    <div class="hs"><div class="hs-num">[STAT_4]</div><div class="hs-text">[STAT_4_LABEL_LINE_1]<br>[STAT_4_LABEL_LINE_2]</div></div>
   </div>
 
   <div class="hero-desc" style="max-width:100%;text-align:center;">
-    [2-3 sentence outcome description]
+    [HERO_DESCRIPTION_PARAGRAPH]
   </div>
 
   <div class="hero-meta">
-    <div class="mi">[Tool 1]</div><div class="msep"></div>
-    <div class="mi">[Tool 2]</div><div class="msep"></div>
-    <div class="mi">[Tool 3]</div>
+    <div class="mi">[META_TAG_1]</div><div class="msep"></div>
+    <div class="mi">[META_TAG_2]</div><div class="msep"></div>
+    <div class="mi">[META_TAG_3]</div><div class="msep"></div>
+    <div class="mi">[META_TAG_4]</div>
   </div>
 
   <div id="startBtnWrap" style="text-align:center;margin-top:28px;">
     <button type="button" class="hero-start-btn" id="heroStartBtn">
       Get the full walkthrough &rarr;
     </button>
-    <p style="margin-top:10px;font-size:11px;color:rgba(10,10,10,0.4);font-family:var(--font-sans);">Free access. We'll send you updates when new workflows are added.</p>
+    <p style="margin-top:10px;font-size:11px;color:rgba(10,10,10,0.4);font-family:var(--font-sans);">Free access. [GATE_INCENTIVE_LINE]</p>
   </div>
 </div>
 </div>
 ```
 
-### 5.3 Phase header
+> `[GATE_INCENTIVE_LINE]` — e.g. "We'll notify you when new worksheets are added." or leave blank.
 
+### F3 — Phase header
 ```html
 <div class="phase-hdr">
-  <div class="phase-num ph-1">1</div>   <!-- ph-1 through ph-5 -->
+  <div class="phase-num ph-[N]">[N]</div>
   <div class="phase-text">
-    <div class="phase-kicker">Phase 1 · [Phase name]</div>
-    <div class="phase-title">[Phase heading]</div>
-    <div class="phase-sub">[One sentence description and time estimate]</div>
+    <div class="phase-kicker">Phase [N] · [PHASE_NAME]</div>
+    <div class="phase-title">[PHASE_HEADING]</div>
+    <div class="phase-sub">[One sentence description. Optional time estimate.]</div>
   </div>
 </div>
 ```
+Replace `[N]` with `1`–`5`. Use `ph-1` through `ph-5` on `.phase-num`.
 
-### 5.4 Step block
-
+### F4 — Step block
 ```html
-<div class="step" id="step-1-1" data-step-label="[Step title short]">
+<div class="step" id="step-[N]-[M]" data-step-label="[SHORT_STEP_TITLE]">
   <div class="step-head">
-    <div class="step-num">Step 1.1</div>
-    <div class="step-title">[Step heading]</div>
+    <div class="step-num">Step [N].[M]</div>
+    <div class="step-title">[STEP_HEADING]</div>
   </div>
   <div class="step-body">
-    <p>[Body text. Use <strong> for emphasis.]</p>
-    <!-- Nest any components from 5.5–5.13 here -->
+    <p>[Body text. Use &lt;strong&gt; for emphasis.]</p>
+    <!-- nest any component from F5–F15 here -->
   </div>
 </div>
 ```
+Every step needs a unique `id` and `data-step-label`. The JS reads these to build the checklist automatically.
 
-Each step needs a unique `id` (e.g. `step-1-1`, `step-2-3`) and `data-step-label` for the checklist. The JS auto-collects them for the progress tracker.
-
-### 5.5 Prompt box (Claude prompt to type)
-
+### F5 — Prompt box (instruction to type into an AI tool)
 ```html
 <div class="prompt-box">
-  <div class="pb-prefix">[Short label e.g. "Extract the strongest evidence"]</div>
+  <div class="pb-prefix">[SHORT_LABEL e.g. "Extract the key points"]</div>
   <div class="pb-text">Paste the exact prompt here.
 
-Multi-line is fine. Use <strong>highlighted text</strong> in lime for key placeholders.</div>
+Multi-line is fine.
+Use <strong>highlighted text</strong> for placeholders the user should customise.</div>
 </div>
 ```
+A "TYPE THIS INTO CLAUDE" label appears top-right automatically.
 
-The `::before` pseudo-element auto-adds "TYPE THIS INTO CLAUDE" in the top right.
-
-### 5.6 Terminal command box
-
+### F6 — Terminal / command box
 ```html
 <div class="cmd-box">
-  <div class="cmd-line"><span class="prompt">$</span> [command here]</div>
-  <div class="cmd-line"><span class="comment"># comment explaining the command</span></div>
+  <div class="cmd-line"><span class="prompt">$</span> [command]</div>
+  <div class="cmd-line"><span class="comment"># Explanation of what this does</span></div>
 </div>
 ```
+A "TERMINAL" label appears top-right automatically.
 
-The `::before` pseudo-element auto-adds "TERMINAL" label.
-
-### 5.7 Note callouts (four variants)
+### F7 — Callout boxes (four variants)
 
 ```html
-<!-- Blue info note -->
+<!-- Blue — general note or context -->
 <div class="note">
   <div class="note-lbl">Note</div>
-  [Content. Use <strong> for bold.]
+  [Content. Use <strong> for key terms.]
 </div>
 
-<!-- Red warning -->
+<!-- Red — warning or common mistake -->
 <div class="warn">
   <div class="warn-lbl">Warning</div>
   [Content]
 </div>
 
-<!-- Gold tip -->
+<!-- Gold — helpful tip or shortcut -->
 <div class="tip">
   <div class="tip-lbl">Tip</div>
   [Content]
 </div>
 
-<!-- Lime "aha" insight -->
+<!-- Lime — key insight or "aha" moment -->
 <div class="aha">
   <div class="aha-lbl">Key insight</div>
-  [Content. Use <strong> for bold.]
+  [Content. Use <strong> for emphasis.]
 </div>
 ```
 
-### 5.8 Tools bar (horizontal tool grid)
-
+### F8 — Tools bar (horizontal grid of tools used)
 ```html
 <div class="tools-bar">
   <div class="tb-cell">
-    <div class="tb-name">[Tool name]</div>
-    <div class="tb-role">[One sentence description of what this tool does in this workflow]</div>
+    <div class="tb-name">[TOOL_NAME]</div>
+    <div class="tb-role">[One sentence: what this tool does in this workflow.]</div>
   </div>
-  <!-- repeat for each tool, max 4 columns -->
+  <!-- repeat — max 4 columns works well -->
 </div>
 ```
 
-### 5.9 Diagram (flow / pipeline)
-
+### F9 — Flow diagram (pipeline / stages)
 ```html
 <div class="diagram">
   <div class="dia-box">
-    <div class="dia-tag">Phase 1 output</div>
+    <div class="dia-tag">[Stage label e.g. "Step 1 output"]</div>
     <div class="dia-name">[Output name]</div>
     <div class="dia-sub">[One line description]</div>
   </div>
@@ -293,98 +357,95 @@ The `::before` pseudo-element auto-adds "TERMINAL" label.
   <div class="dia-box">...</div>
 </div>
 ```
+Max 3 boxes / 2 arrows. For more stages, use a `.sub-list` in a step body instead.
 
-Max 3 boxes with 2 arrows. For more steps, use a `.sub-list` inside a step body instead.
-
-### 5.10 Numbered sub-list
-
+### F10 — Numbered sub-list
 ```html
 <ul class="sub-list">
-  <li><strong>[Label]</strong> [Explanation text]</li>
+  <li><strong>[Label]</strong> [Explanation text.]</li>
   <li>...</li>
 </ul>
 ```
+Auto-numbered with circular accent-coloured counters.
 
-Auto-numbers with circular accent-coloured counters.
-
-### 5.11 Bullet list
-
+### F11 — Bullet list
 ```html
 <ul class="bull">
   <li>[Item]</li>
 </ul>
 ```
 
-### 5.12 Cheat sheet table
-
+### F12 — Cheat sheet table
 ```html
 <div class="cheat">
   <div class="cheat-row">
-    <div class="cheat-key">[Key / command]</div>
-    <div class="cheat-val">[Description]</div>
+    <div class="cheat-key">[Key / shortcut / command]</div>
+    <div class="cheat-val">[What it does]</div>
   </div>
   <!-- repeat rows -->
 </div>
 ```
 
-### 5.13 Glossary
-
+### F13 — Glossary
 ```html
 <div class="gloss">
   <div class="gloss-item">
     <div class="gloss-term">[Term]</div>
-    <div class="gloss-def">[Definition]</div>
+    <div class="gloss-def">[Definition — 1-2 sentences.]</div>
   </div>
 </div>
 ```
 
-### 5.14 Section header (inside body, above a group of steps)
-
+### F14 — Section header (labels a group of steps)
 ```html
-<div class="sec-lbl">[Uppercase label e.g. "Before you start"]</div>
-<div class="sec-title">[Section heading]</div>
-<p class="sec-sub">[One sentence framing]</p>
+<div class="sec-lbl">[LABEL e.g. "Before you start"]</div>
+<div class="sec-title">[SECTION_HEADING]</div>
+<p class="sec-sub">[One sentence that frames what follows.]</p>
 ```
 
-### 5.15 Path block (branching options)
-
+### F15 — Path block (branching options / "choose your path")
 ```html
 <div class="path-block">
   <div class="path-block-tag">Path A</div>
   <div class="path-block-head">[Option heading]</div>
   <div class="path-block-body">
-    <p>[Description]</p>
+    <p>[Description of this option and who it suits.]</p>
   </div>
 </div>
 ```
 
 ---
 
-## 6. Chapter structure
+## SECTION G — CHAPTER SYSTEM
 
-Each chapter is wrapped in:
+Every chapter uses this wrapper:
 ```html
-<div class="guide-chapter" id="ch-[name]" data-g-label="[Short tab label]">
+<div class="guide-chapter" id="ch-[SLUG]" data-g-label="[SHORT_TAB_LABEL]">
   [content]
 </div>
 ```
 
-The JS reads all `.guide-chapter` elements in DOM order and builds the dot navigation automatically. The `data-g-label` value appears as the chapter tooltip.
+The JS collects all `.guide-chapter` elements in DOM order and builds the dot navigation automatically. `data-g-label` shows as the tooltip on each dot.
 
 **Recommended chapter order:**
-1. `ch-welcome` — Hero (outside `.body`, starts as `is-active`)
-2. `ch-context` — "Get oriented" / tools overview
-3. `ch-p1` through `ch-pN` — One per phase
-4. `ch-ref` — Reference / scripts / cheat sheets
-5. `ch-checklist` — Journey / progress tracker (always last)
 
-Separate phases with `<hr class="div">` between chapter divs inside `.body`.
+| Order | ID | Label | Location |
+|---|---|---|---|
+| 1 | `ch-welcome` | Welcome | Outside `.body` — starts `is-active` |
+| 2 | `ch-context` | Get oriented | Inside `.body` |
+| 3 | `ch-p1` | Phase 1 | Inside `.body` |
+| 4 | `ch-p2` | Phase 2 | Inside `.body` |
+| … | … | … | … |
+| N-1 | `ch-ref` | Reference | Inside `.body` |
+| N | `ch-checklist` | Checklist | Inside `.body` — always last |
+
+Separate phases with `<hr class="div">` between their chapter `<div>`s.
 
 ---
 
-## 7. Guide dock (bottom navigation)
+## SECTION H — GUIDE DOCK (bottom navigation)
 
-This is fixed at the bottom, outside `.page`. Copy exactly — the JS targets these IDs:
+Fixed at the bottom of the viewport. Sits **outside** `.page`. Copy exactly — the JS targets these IDs:
 
 ```html
 <nav class="guide-dock" id="guideDock" aria-label="Guide navigation" role="navigation">
@@ -407,28 +468,26 @@ This is fixed at the bottom, outside `.page`. Copy exactly — the JS targets th
 
 ---
 
-## 8. Email gate system
+## SECTION I — EMAIL GATE MODALS
 
-### How it works
-1. `<body>` starts with class `gated` — hides `.body` and guide dock via CSS
-2. Clicking the hero CTA button opens the email gate modal
-3. User submits email → sent to Google Apps Script → `gated` class removed → mode choice modal opens
-4. User clicks "No thanks, just browse" → `gated` class removed → mode choice modal opens (no email sent)
-5. On return visits, `localStorage` bypasses the gate entirely
+### How the gate works
+1. `<body>` starts with class `gated` → hides `.body` and guide dock
+2. Hero CTA button click → opens gate modal
+3. User submits email → email sent to Apps Script → `gated` removed → mode choice modal opens
+4. User clicks skip → `gated` removed → mode choice modal opens (no email sent)
+5. Return visitors: `localStorage` check bypasses the gate automatically
 
-### Gate modal HTML
-
+### Gate modal (customise the copy with your brand fields)
 ```html
-<!-- EMAIL GATE MODAL -->
 <div class="gate-overlay" id="gateModal" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
   <div class="gate-box">
     <div class="gate-kicker">Free access</div>
-    <h2 class="gate-heading" id="gateHeading">Want updates when new workflows drop?</h2>
-    <p class="gate-sub">Add your email and I'll let you know when I release new tools like this one. No spam, unsubscribe any time.</p>
+    <h2 class="gate-heading" id="gateHeading">[GATE_MODAL_HEADING]</h2>
+    <p class="gate-sub">[GATE_MODAL_SUBTEXT]</p>
     <input type="email" class="gate-input" id="gateEmail" placeholder="your@email.com" autocomplete="email" aria-label="Email address">
     <div class="gate-error" id="gateError" role="alert"></div>
-    <button type="button" class="gate-submit" id="gateSubmit">Yes, keep me posted &rarr;</button>
-    <p class="gate-privacy">Your email is stored in a private spreadsheet. It's never shared or sold.</p>
+    <button type="button" class="gate-submit" id="gateSubmit">[GATE_SUBMIT_LABEL]</button>
+    <p class="gate-privacy">[GATE_PRIVACY_LINE]</p>
     <p style="text-align:center;margin-top:14px;">
       <button type="button" id="gateSkip" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--fg-muted);text-decoration:underline;font-family:var(--font-sans);padding:0;">No thanks, just browse</button>
     </p>
@@ -436,8 +495,7 @@ This is fixed at the bottom, outside `.page`. Copy exactly — the JS targets th
 </div>
 ```
 
-### Mode choice modal HTML (shown after gate clears)
-
+### Mode choice modal (shown after gate clears — copy exactly)
 ```html
 <div class="gate-overlay" id="gateModeModal" role="dialog" aria-modal="true" aria-labelledby="gateModeHeading">
   <div class="gate-mode-box">
@@ -452,43 +510,42 @@ This is fixed at the bottom, outside `.page`. Copy exactly — the JS targets th
 </div>
 ```
 
-### Apps Script URL
-Replace this value in the gate script block:
-```js
-var APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
-```
-
-The Google Apps Script expects a POST with JSON body `{ email, timestamp, source }` and appends to a Sheet with columns `Email | Timestamp | Source`.
-
 ---
 
-## 9. Help / booking modal
+## SECTION J — HELP / SUPPORT MODAL
+
+The `?` button is fixed top-right and opens a booking or contact modal. Customise with your own support offer and link.
 
 ```html
+<!-- Fixed ? button -->
+<button type="button" class="help-btn" id="helpBtn" aria-label="Get help">?</button>
+
+<!-- Help modal -->
 <div class="gate-overlay" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpModalHeading">
   <div class="help-modal-box">
     <button type="button" class="gate-close-btn" id="helpModalClose" aria-label="Close">✕</button>
     <div class="gate-kicker" style="color:var(--lime-deep);">Free support</div>
     <h2 class="gate-heading" id="helpModalHeading">Getting stuck?</h2>
-    <p class="gate-sub">[Your support offer text]</p>
-    <a href="YOUR_BOOKING_URL" target="_blank" rel="noopener" class="help-link">
-      Book a free 30-min call &rarr;
+    <p class="gate-sub">[SUPPORT_MODAL_BODY_TEXT]</p>
+    <a href="[SUPPORT_BOOKING_URL]" target="_blank" rel="noopener" class="help-link">
+      [SUPPORT_BUTTON_LABEL]
     </a>
-    <p class="gate-privacy">Opens in Google Calendar. No payment required.</p>
+    <p class="gate-privacy">[e.g. "Opens in Google Calendar. No payment required."]</p>
   </div>
 </div>
 ```
 
-The `?` button that opens this is a fixed element at the top right:
-```html
-<button type="button" class="help-btn" id="helpBtn" aria-label="Book a follow-up call">?</button>
-```
+**Support URL options:**
+- Google Calendar appointments link (recommended)
+- Calendly link
+- `mailto:you@example.com?subject=Worksheet help`
+- Any booking page URL
 
 ---
 
-## 10. Checklist / journey chapter
+## SECTION K — CHECKLIST CHAPTER
 
-Always the last chapter. The JS auto-populates the list from all `data-step-label` attributes — you only need the shell:
+Always the last chapter. The JS auto-populates the checklist from every `data-step-label` in the document — you only need this shell:
 
 ```html
 <div class="guide-chapter" id="ch-checklist" data-g-label="Checklist">
@@ -509,16 +566,16 @@ Always the last chapter. The JS auto-populates the list from all `data-step-labe
 
 ---
 
-## 11. Footer
+## SECTION L — FOOTER
 
 ```html
 <div class="foot">
-  <div class="foot-strip">Practical AI workflows</div>
-  <a class="foot-body" href="YOUR_WEBSITE" target="_blank" rel="noopener">
-    <div class="foot-brand">Nathaniel Baldock</div>
+  <div class="foot-strip">[FOOTER_TAGLINE]</div>
+  <a class="foot-body" href="[CREATOR_WEBSITE]" target="_blank" rel="noopener" aria-label="[CREATOR_NAME] — [CREATOR_WEBSITE_DISPLAY]">
+    <div class="foot-brand">[CREATOR_NAME]</div>
     <div class="foot-cols">
-      <div class="foot-left">nathanielbaldock.com</div>
-      <div class="foot-right">v1.0 · [Worksheet edition] · 2026</div>
+      <div class="foot-left">[CREATOR_WEBSITE_DISPLAY]</div>
+      <div class="foot-right">[VERSION_STRING e.g. "v1.0 · Blog edition · 2026"]</div>
     </div>
   </a>
 </div>
@@ -526,50 +583,39 @@ Always the last chapter. The JS auto-populates the list from all `data-step-labe
 
 ---
 
-## 12. JavaScript — two script blocks
+## SECTION M — JAVASCRIPT KEYS
 
-The HTML requires exactly two `<script>` blocks at the end of `<body>`:
+Two script blocks go at the end of `<body>`. Both use localStorage — set unique keys per worksheet so multiple worksheets on the same domain don't share state.
 
-### Script 1 — Guide engine (chapter nav, mode toggle, checklist, progress)
-
-Required IDs it targets:
-- `guideDock`, `modeGuided`, `modeFull`, `chLabel`, `chDots`, `chPrev`, `chNext`
-- `heroStartBtn`, `startBtnWrap`
-- `journeyList`, `journeyPct`, `journeyReset`
-- All `.guide-chapter` elements (auto-collected)
-- All `.step` elements with `data-step-label` (auto-collected for checklist)
-
-Key localStorage key: set to a unique value per worksheet:
+**Script 1 — Guide engine** (chapter nav, mode toggle, checklist, progress)
 ```js
-var LS_KEY = 'nathanielb-[worksheet-slug]-v1';
+var LS_KEY = '[YOUR_LS_KEY e.g. janesmith-blog-workflow-v1]';
 ```
 
-### Script 2 — Gate + help modal engine
+IDs it targets (do not rename): `guideDock`, `modeGuided`, `modeFull`, `chLabel`, `chDots`, `chPrev`, `chNext`, `heroStartBtn`, `startBtnWrap`, `journeyList`, `journeyPct`, `journeyReset`, all `.guide-chapter` and `.step[data-step-label]` elements.
 
-Required IDs it targets:
-- `gateModal`, `gateModeModal`, `helpModal`, `helpModalClose`
-- `gateEmail`, `gateSubmit`, `gateError`, `gateSkip`
-- `startGuided`, `startFull`, `heroStartBtn`, `helpBtn`
-
-Key localStorage key (gate unlock):
+**Script 2 — Gate + help engine**
 ```js
-var GATE_KEY = 'nathanielb-[worksheet-slug]-gate-v1';
+var APPS_SCRIPT_URL = '[YOUR_APPS_SCRIPT_URL]';
+var GATE_KEY        = '[YOUR_GATE_KEY e.g. janesmith-blog-gate-v1]';
 ```
+
+IDs it targets (do not rename): `gateModal`, `gateModeModal`, `helpModal`, `helpModalClose`, `gateEmail`, `gateSubmit`, `gateError`, `gateSkip`, `startGuided`, `startFull`, `heroStartBtn`, `helpBtn`.
 
 ---
 
-## 13. Critical CSS for gate behaviour
+## SECTION N — CRITICAL CSS (gate behaviour + mobile)
 
-These rules must be present — they control what's hidden before email is submitted:
+These rules must be present in the `<style>` block. They are not optional:
 
 ```css
-/* Hide content when gated */
-body.gated .body { display: none; }
-body.gated .guide-dock { display: none; }
-body.gated.guided { padding-bottom: 0; }
-body.gated .page { max-height: none; overflow: visible; }
+/* Hide worksheet content until gate is cleared */
+body.gated .body            { display: none; }
+body.gated .guide-dock      { display: none; }
+body.gated.guided           { padding-bottom: 0; }
+body.gated .page            { max-height: none; overflow: visible; }
 
-/* Fix mobile scroll lock when gated */
+/* Fix mobile scroll lock on the gated landing page */
 html.guide-locked:has(body.gated) {
   height: auto !important;
   overflow: visible !important;
@@ -579,54 +625,97 @@ html.guide-locked:has(body.gated) {
 
 ---
 
-## 14. Prompt to give Claude
+## SECTION O — CLAUDE BUILD PROMPT
 
-Use this prompt in Claude Chat:
+Copy this prompt, fill in your values from Sections A and C, and paste the full spec below it.
 
 ```
-Build a complete self-contained worksheet HTML file using the design system and component library from the Worksheet Spec doc I'm pasting below.
+Build a complete self-contained worksheet HTML file using the design system and
+component library in the spec document below. Follow every rule in Sections D–N exactly.
+Replace all bracketed placeholders with the values I provide here.
 
-Here are the specifics for this worksheet:
+── BRAND ──
+CREATOR_NAME:           [Your name]
+CREATOR_INITIALS:       [1-2 chars]
+CREATOR_TAGLINE:        [Header sub-line e.g. "PRACTICAL TOOLS · 2026"]
+CREATOR_WEBSITE:        [https://yoursite.com]
+CREATOR_WEBSITE_DISPLAY:[yoursite.com]
+FOOTER_TAGLINE:         [e.g. "Practical Tools"]
+SUPPORT_BOOKING_URL:    [Your booking/contact URL]
+SUPPORT_BUTTON_LABEL:   [e.g. "Book a free 30-min call →"]
+SUPPORT_MODAL_BODY:     [Your support offer text]
 
-TITLE: [Your worksheet title]
-SUBTITLE: [One line description]
-CATEGORY LINE: [e.g. "Build · Share · Grow" and "Intermediate · 1-2 hours"]
-HERO STATS: [Stat 1 + label], [Stat 2 + label], [Stat 3 + label], [Stat 4 + label]
-HERO DESCRIPTION: [2-3 sentence outcome paragraph]
-HERO META TAGS: [Tool 1] · [Tool 2] · [Tool 3] · [etc.]
-TOOLS USED: [list the tools and their role in the workflow]
+── EMAIL GATE ──
+APPS_SCRIPT_URL:        [Your Google Apps Script Web App URL, or '' to disable]
+EMAIL_SOURCE_LABEL:     [e.g. "Jane Smith Worksheet" — logged to your Sheet]
+GATE_MODAL_HEADING:     [e.g. "Want updates when new guides drop?"]
+GATE_MODAL_SUBTEXT:     [e.g. "Add your email and I'll notify you when new tools go live."]
+GATE_SUBMIT_LABEL:      [e.g. "Yes, keep me posted →"]
+GATE_PRIVACY_LINE:      [e.g. "Your email is stored in a private spreadsheet. Never shared."]
+GATE_INCENTIVE_LINE:    [Small text under hero button e.g. "We'll notify you of new worksheets."]
+
+── CONTENT ──
+WORKSHEET_NAME:         [Short name for header badge]
+PAGE_TITLE:             [Full browser tab title]
+HERO_TITLE:             [Main heading — split into two lines if needed]
+HERO_SUBTITLE:          [One-line description]
+CATEGORY_LINE:          [e.g. "Write · Edit · Publish"]
+SKILL_TIME_LINE:        [e.g. "Beginner · 1-2 hours"]
+HERO_STATS:             [4 stats with labels]
+HERO_DESCRIPTION:       [2-3 sentence outcome paragraph]
+HERO_META_TAGS:         [Tool 1 · Tool 2 · Tool 3 · etc.]
 
 PHASES AND STEPS:
-Phase 1 — [Name]: [Steps and content]
-Phase 2 — [Name]: [Steps and content]
-[etc.]
+[Describe each phase and its steps in as much detail as you have.
+Include any specific prompts, examples, callouts, or reference material.]
 
-REFERENCE SECTION: [Prompts, cheat sheets, glossary items to include]
+REFERENCE SECTION:
+[List any prompts, cheat sheets, glossary terms, or scripts to include.]
 
-YOUR NAME: Nathaniel Baldock
-YOUR WEBSITE: https://www.nathanielbaldock.com
-BOOKING URL: [Your Google Calendar link]
-APPS SCRIPT URL: [Your deployed Google Apps Script URL]
-VERSION: v1.0 · [Edition name] · 2026
-LS_KEY: nathanielb-[slug]-v1
-GATE_KEY: nathanielb-[slug]-gate-v1
+── TECHNICAL ──
+LS_KEY:                 [e.g. janesmith-worksheet-slug-v1]
+GATE_KEY:               [e.g. janesmith-worksheet-slug-gate-v1]
+VERSION_STRING:         [e.g. v1.0 · Blog edition · 2026]
 
----
-[Paste the full spec doc here]
+── SPEC DOCUMENT ──
+[Paste this full spec here]
 ```
 
 ---
 
-## 15. Deployment checklist
+## SECTION P — DEPLOYMENT CHECKLIST
 
-- [ ] Replace `APPS_SCRIPT_URL` with live Google Apps Script URL
-- [ ] Replace `YOUR_WEBSITE` with `https://www.nathanielbaldock.com`
-- [ ] Replace `YOUR_BOOKING_URL` with Google Calendar appointments link
-- [ ] Set unique `LS_KEY` and `GATE_KEY` values (prevents collisions with other worksheets)
-- [ ] Set `version` string in footer
-- [ ] Set `<title>` tag in `<head>`
-- [ ] Rename file to `index.html`
-- [ ] Place in a folder named after the worksheet (e.g. `My_New_Worksheet/index.html`)
-- [ ] Add `vercel.json` with `{}` inside that folder
-- [ ] Commit and push to `main`
-- [ ] Vercel auto-deploys — set root directory to the worksheet folder
+After Claude generates the file, run through this before publishing:
+
+**Brand**
+- [ ] Creator name, initials, tagline correct in header
+- [ ] Header badge shows the right worksheet name
+- [ ] Footer name, website URL, and display text correct
+- [ ] Footer version string set (e.g. `v1.0 · Blog edition · 2026`)
+- [ ] `<title>` tag set in `<head>`
+- [ ] Help modal support text and booking URL set
+
+**Email capture**
+- [ ] `APPS_SCRIPT_URL` set (or intentionally `''` to disable)
+- [ ] Test the Apps Script URL in a browser — should show `Active.`
+- [ ] Gate modal heading, sub-text, button label, and privacy line correct
+- [ ] Email source label matches this worksheet (for Sheet tracking)
+
+**Technical**
+- [ ] `LS_KEY` is unique (no other worksheet uses the same string)
+- [ ] `GATE_KEY` is unique
+- [ ] File renamed to `index.html`
+- [ ] File placed in its own folder (e.g. `My_Worksheet/index.html`)
+- [ ] `vercel.json` with `{}` added inside that folder
+- [ ] Folder committed and pushed to `main` on GitHub
+
+**Vercel**
+- [ ] Vercel project connected to your GitHub repo
+- [ ] Root directory set to the worksheet folder (e.g. `My_Worksheet`)
+- [ ] Deployment succeeded (check Vercel dashboard)
+- [ ] Live URL opens correctly on desktop
+- [ ] Live URL opens and scrolls correctly on mobile
+- [ ] Submit a test email → confirm row appears in your Google Sheet
+- [ ] "No thanks, just browse" link unlocks the content
+- [ ] Guided mode / Read full page toggle works
+- [ ] Checklist checkboxes save progress on refresh
