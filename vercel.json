@@ -1,10 +1,3 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "Research_to_Presentation-dist",
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index.html"
-    }
-  ]
+  "outputDirectory": "Research_to_Presentation"
 }
