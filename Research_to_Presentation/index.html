@@ -2360,6 +2360,13 @@ body.gated .guide-dock{ display:none; }
 body.gated.guided{ padding-bottom:0; }
 body.gated .page{ max-height:none; overflow:visible; }
 
+/* When gated: allow normal page scroll (overrides guide-locked on <html>) */
+html.guide-locked:has(body.gated){
+  height:auto !important;
+  overflow:visible !important;
+  overflow-x:hidden !important;
+}
+
 /* ── Gate email modal ── */
 .gate-overlay{
   position:fixed;inset:0;
