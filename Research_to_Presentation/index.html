@@ -2515,12 +2515,15 @@ body.gated .page{ max-height:none; overflow:visible; }
 <div class="gate-overlay" id="gateModal" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
   <div class="gate-box">
     <div class="gate-kicker">Free access</div>
-    <h2 class="gate-heading" id="gateHeading">Enter your email to get the full walkthrough</h2>
-    <p class="gate-sub">We'll send you access to new workflows as they're released. No spam, unsubscribe any time.</p>
+    <h2 class="gate-heading" id="gateHeading">Want updates when new workflows drop?</h2>
+    <p class="gate-sub">Add your email and I'll let you know when I release new tools like this one. No spam, unsubscribe any time.</p>
     <input type="email" class="gate-input" id="gateEmail" placeholder="your@email.com" autocomplete="email" aria-label="Email address">
     <div class="gate-error" id="gateError" role="alert"></div>
-    <button type="button" class="gate-submit" id="gateSubmit">Get the walkthrough &rarr;</button>
+    <button type="button" class="gate-submit" id="gateSubmit">Yes, keep me posted &rarr;</button>
     <p class="gate-privacy">Your email is stored in a private spreadsheet. It's never shared or sold.</p>
+    <p style="text-align:center;margin-top:14px;">
+      <button type="button" id="gateSkip" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--fg-muted);text-decoration:underline;font-family:var(--font-sans);padding:0;">No thanks, just browse</button>
+    </p>
   </div>
 </div>
 
@@ -2634,6 +2637,14 @@ body.gated .page{ max-height:none; overflow:visible; }
   // ── Email form ──
   submitBtn   && submitBtn.addEventListener('click', handleSubmit);
   emailInput  && emailInput.addEventListener('keydown', function(e){ if(e.key==='Enter') handleSubmit(); });
+
+  // ── Skip / no thanks ──
+  var skipBtn = document.getElementById('gateSkip');
+  skipBtn && skipBtn.addEventListener('click', function(){
+    unlock();
+    gateModal.classList.remove('open');
+    gateModeModal.classList.add('open');
+  });
 
   // ── Mode choice ──
   var startGuided = document.getElementById('startGuided');
