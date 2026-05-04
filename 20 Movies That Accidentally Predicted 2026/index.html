@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20 Movies That Accidentally Predicted 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:             #ffffff;
+  --bg-warm:        hsl(42, 40%, 98%);
+  --bg-mist:        hsl(210, 24%, 96%);
+  --bg-muted:       hsl(210, 16%, 94%);
+  --fg:             #0a0a0a;
+  --fg-med:         hsl(220, 8%, 30%);
+  --fg-muted:       hsl(220, 7%, 44%);
+  --border:         hsl(220, 12%, 88%);
+  --accent:         hsl(205, 58%, 38%);
+  --accent-mid:     hsl(200, 45%, 42%);
+  --accent-soft:    hsl(200, 40%, 94%);
+  --accent-bright:  hsl(198, 70%, 48%);
+  --sky-tint:       hsl(200, 45%, 88%);
+  --lime:           hsl(78, 86%, 52%);
+  --lime-deep:      hsl(78, 70%, 38%);
+  --lime-muted:     hsl(78, 40%, 92%);
+  --green:          hsl(152, 45%, 36%);
+  --green-bg:       hsl(152, 40%, 94%);
+  --gold:           hsl(38, 90%, 44%);
+  --gold-bg:        hsl(40, 60%, 95%);
+  --red:            hsl(2, 70%, 48%);
+  --red-bg:         hsl(2, 60%, 96%);
+  --dark:           hsl(220, 18%, 8%);
+  --card-shadow:    0 1px 2px rgba(15,23,42,.04), 0 12px 32px -8px rgba(15,23,42,.08);
+  --font-sans:      'Inter', system-ui, sans-serif;
+  --font-serif:     'Fraunces', 'Georgia', serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, monospace;
+  --r:              16px;
+  --r-sm:           10px;
+  --page-px:        clamp(1.25rem, 4.5vw, 4.25rem);
+  --prose-max:      min(72ch, 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg-warm);
+  font-feature-settings: "ss01", "cv11";
+}
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Site header */
+.site-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px var(--page-px) 0;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--fg);
+}
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--dark);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18px;
+}
+.logo-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+.logo-sub {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.hdr-badge {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--fg-muted);
+  padding: 6px 12px;
+  background: var(--bg-mist);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+/* Hero */
+.hero {
+  padding: 80px var(--page-px) 80px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+.cat-rule {
+  width: 28px;
+  height: 1px;
+  background: var(--border);
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  color: var(--fg);
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--fg-med);
+  max-width: 56ch;
+  margin: 0 auto 48px;
+  line-height: 1.5;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 720px;
+  margin: 0 auto 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--bg);
+  overflow: hidden;
+}
+.hs {
+  padding: 24px 16px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.hs:last-child { border-right: none; }
+.hs-num {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hs-text {
+  font-size: 11px;
+  color: var(--fg-muted);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+.hero-desc {
+  max-width: 64ch;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+  color: var(--fg-med);
+  line-height: 1.6;
+}
+.hero-poster-marquee {
+  max-width: 860px;
+  margin: 40px auto 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
+.hero-poster-track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  animation: poster-scroll 34s linear infinite;
+}
+.hero-poster-marquee:hover .hero-poster-track {
+  animation-play-state: paused;
+}
+.hero-poster-link {
+  display: block;
+  line-height: 0;
+  border-radius: 7px;
+  outline: none;
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
+  position: relative;
+  z-index: 1;
+}
+.hero-poster-link:hover,
+.hero-poster-link:focus-visible {
+  transform: translateY(-4px) scale(1.2);
+  box-shadow: 0 18px 36px -12px rgba(15,23,42,0.6), 0 0 0 2px var(--accent-bright);
+  z-index: 2;
+}
+.hero-poster-thumb {
+  width: clamp(44px, 5vw, 64px);
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 7px;
+  box-shadow: 0 10px 24px -14px rgba(15,23,42,0.45);
+  display: block;
+}
+@keyframes poster-scroll {
+  from { transform: translateX(calc(-50% - 6px)); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-poster-track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
+  .hero-poster-marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
+/* Body */
+.body {
+  padding: 0 var(--page-px);
+}
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.sec-lbl {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.sec-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  max-width: 28ch;
+}
+.sec-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.sec-sub {
+  max-width: var(--prose-max);
+  font-size: 1.0625rem;
+  color: var(--fg-med);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+.sec-sub + .sec-sub { margin-top: 16px; }
+
+
+/* Movie cards */
+.films-intro {
+  max-width: var(--prose-max);
+  margin-bottom: 56px;
+}
+
+.film {
+  border-top: 1px solid var(--border);
+  padding: 56px 0;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  position: relative;
+}
+.film:first-of-type {
+  border-top: 2px solid var(--fg);
+  padding-top: 48px;
+}
+@media (max-width: 880px) {
+  .film {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.film-card {
+  background: var(--poster), var(--dark);
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  border-radius: var(--r);
+  padding: 28px 24px;
+  aspect-ratio: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  align-self: start;
+  position: sticky;
+  top: 24px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+@media (max-width: 880px) {
+  .film-card {
+    position: static;
+    width: min(280px, 100%);
+    aspect-ratio: 2/3;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px;
+  }
+}
+.film-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.28) 42%, rgba(0,0,0,0.78) 100%),
+    radial-gradient(ellipse at top right, rgba(80, 180, 255, 0.22), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(180, 220, 100, 0.14), transparent 50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+.film-card:hover,
+.film-card:focus-visible {
+  box-shadow: 0 18px 44px -18px rgba(15,23,42,0.35);
+  transform: translateY(-2px);
+}
+.film-card:hover::before,
+.film-card:focus-visible::before {
+  opacity: 1;
+}
+.film-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.88) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.film-card-top {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.film-card-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.film-card-year {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 6px;
+}
+.film-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+@media (max-width: 880px) {
+  .film-card { display: flex; }
+  .film-card-bottom { text-align: right; align-self: end; }
+}
+.film-card-bottom {
+  position: relative;
+  z-index: 1;
+}
+.film-card:hover .film-card-top,
+.film-card:focus-visible .film-card-top {
+  opacity: 1;
+  transform: translateY(0);
+}
+.film-card-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.film-card-score-num {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--lime);
+}
+.film-card-score-max {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+}
+.film-card-score-lbl {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+
+.film-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.film-body-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  margin-bottom: -4px;
+}
+.film-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 20px;
+  align-items: baseline;
+}
+@media (max-width: 600px) {
+  .film-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+.film-row-lbl {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--fg-muted);
+  padding-top: 4px;
+}
+.film-row-body {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--fg);
+}
+.film-quote {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--fg);
+  letter-spacing: -0.005em;
+}
+.film-quote::before {
+  content: "“";
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 2px;
+}
+.film-quote::after {
+  content: "”";
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 2px;
+}
+.film-reality {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fg);
+}
+.film-reality strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+.film-gap {
+  background: var(--lime-muted);
+  border-left: 3px solid var(--lime-deep);
+  padding: 14px 18px;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  color: var(--fg);
+  line-height: 1.5;
+  font-style: italic;
+}
+.film-gap-lbl {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--lime-deep);
+  font-style: normal;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Reality check section */
+.reality-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg);
+}
+@media (max-width: 760px) {
+  .reality-grid { grid-template-columns: 1fr; }
+}
+.reality-col {
+  padding: 32px 28px;
+}
+.reality-col + .reality-col {
+  border-left: 1px solid var(--border);
+}
+@media (max-width: 760px) {
+  .reality-col + .reality-col {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}
+.reality-col-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.reality-pill {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.reality-pill.shipped {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.reality-pill.fiction {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.reality-col h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.reality-list {
+  list-style: none;
+}
+.reality-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--fg-med);
+}
+.reality-list li:first-child { border-top: none; padding-top: 4px; }
+.reality-list li strong {
+  display: block;
+  color: var(--fg);
+  font-weight: 600;
+  margin-bottom: 2px;
+  font-size: 0.9375rem;
+}
+
+/* Closing */
+.closing {
+  background: var(--dark);
+  color: #fff;
+  margin: 0 calc(-1 * var(--page-px));
+  padding: 80px var(--page-px);
+  text-align: center;
+}
+.closing .sec-lbl { color: var(--lime); }
+.closing .sec-title { color: #fff; margin-left: auto; margin-right: auto; }
+.closing .sec-sub { color: rgba(255,255,255,0.7); margin-left: auto; margin-right: auto; }
+.closing-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 36ch;
+  margin: 48px auto 16px;
+  color: #fff;
+  letter-spacing: -0.015em;
+}
+.closing-cite {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  font-weight: 600;
+}
+
+
+/* Footer */
+.foot {
+  background: var(--bg-warm);
+  border-top: 1px solid var(--border);
+  padding: 28px var(--page-px);
+}
+.foot-strip {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--fg-muted);
+  margin-bottom: 12px;
+}
+.foot-body {
+  text-decoration: none;
+  color: var(--fg);
+  display: block;
+}
+.foot-brand {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.foot-cols {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--fg-muted);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Toc */
+.toc {
+  background: var(--bg-mist);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  margin-top: 40px;
+  columns: 2;
+  column-gap: 32px;
+}
+@media (max-width: 600px) {
+  .toc { columns: 1; }
+}
+.toc a {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.9375rem;
+  color: var(--fg-med);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+  break-inside: avoid;
+}
+.toc a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.toc a span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  margin-right: 10px;
+}
+
+/* Print */
+@media print {
+  body { background: #fff; }
+  .page { max-width: 100%; }
+  .film-card { position: static; aspect-ratio: auto; min-height: 200px; }
+  .film { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- Header -->
+<div class="site-hdr">
+  <a class="logo-row" href="https://www.nathanielbaldock.com" target="_blank" rel="noopener">
+    <div class="logo-mark">N</div>
+    <div>
+      <div class="logo-name">Nathaniel Baldock</div>
+      <div class="logo-sub">WRITING ON AI</div>
+    </div>
+  </a>
+  <div class="hdr-badge">Essay · May 2026</div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-category">
+    <span>Sci-fi · Reality check</span>
+    <div class="cat-rule"></div>
+    <span>Long read · ~15 min</span>
+  </div>
+  <div class="hero-title">
+    20 Movies That Accidentally Predicted 2026
+  </div>
+  <div class="hero-sub">
+    Hollywood spent a hundred years predicting AI and robots. In 2026, the receipts are in.
+  </div>
+
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-num">20</div><div class="hs-text">Films<br>scored</div></div>
+    <div class="hs"><div class="hs-num">1927</div><div class="hs-text">First robot on screen<br>Metropolis</div></div>
+    <div class="hs"><div class="hs-num">1968</div><div class="hs-text">First AI character<br>HAL 9000</div></div>
+    <div class="hs"><div class="hs-num">10/10</div><div class="hs-text">Top scorer<br>Her, 2013</div></div>
+  </div>
+
+  <div class="hero-desc">
+    Each film entry pairs the original quote with the verified 2025-2026 capability that now exists. Some predictions landed early. Some landed too well. A few are still hilariously off.
+  </div>
+
+  <div class="hero-poster-marquee" aria-label="Movie posters featured in this presentation">
+    <div class="hero-poster-track">
+      <a class="hero-poster-link" href="#f01" aria-label="Jump to 2001: A Space Odyssey"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="2001: A Space Odyssey poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f02" aria-label="Jump to Westworld"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/qNt29HzxwZ4jGTgSRxdA34ino9Q.jpg" alt="Westworld poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f03" aria-label="Jump to Blade Runner"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg" alt="Blade Runner poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f04" aria-label="Jump to WarGames"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/zZ1rN4LoPxKNfAp67Xl300WxVeD.jpg" alt="WarGames poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f05" aria-label="Jump to The Terminator"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg" alt="The Terminator poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f06" aria-label="Jump to RoboCop"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/esmAU0fCO28FbS6bUBKLAzJrohZ.jpg" alt="RoboCop poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f07" aria-label="Jump to Total Recall"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/wVbeL6fkbTKSmNfalj4VoAUUqJv.jpg" alt="Total Recall poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f08" aria-label="Jump to Ghost in the Shell"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/9gC88zYUBARRSThcG93MvW14sqx.jpg" alt="Ghost in the Shell poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f09" aria-label="Jump to Gattaca"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/eSKr5Fl1MEC7zpAXaLWBWSBjgJq.jpg" alt="Gattaca poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f10" aria-label="Jump to The Matrix"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/aOIuZAjPaRIE6CMzbazvcHuHXDc.jpg" alt="The Matrix poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f11" aria-label="Jump to A.I. Artificial Intelligence"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/8MZSGX5JORoO72EfuAEcejH5yHn.jpg" alt="A.I. Artificial Intelligence poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f12" aria-label="Jump to Minority Report"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/ccqpHq5tk5W4ymbSbuoy4uYOxFI.jpg" alt="Minority Report poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f13" aria-label="Jump to I, Robot"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/efwv6F2lGaghjPpBRSINHtoEiZB.jpg" alt="I, Robot poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f14" aria-label="Jump to WALL-E"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg" alt="WALL-E poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f15" aria-label="Jump to Her"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg" alt="Her poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f16" aria-label="Jump to Ex Machina"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg" alt="Ex Machina poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f17" aria-label="Jump to Big Hero 6"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/2mxS4wUimwlLmI1xp6QW6NSU361.jpg" alt="Big Hero 6 poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f18" aria-label="Jump to Upgrade"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/woLGROUdPWdBnLVFKYdGD3kFkPY.jpg" alt="Upgrade poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f19" aria-label="Jump to Mission: Impossible Dead Reckoning"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg" alt="Mission: Impossible Dead Reckoning poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f20" aria-label="Jump to Companion"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/oCoTgC3UyWGfyQ9thE10ulWR7bn.jpg" alt="Companion poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f01" aria-label="Jump to 2001: A Space Odyssey"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="2001: A Space Odyssey poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f02" aria-label="Jump to Westworld"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/qNt29HzxwZ4jGTgSRxdA34ino9Q.jpg" alt="Westworld poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f03" aria-label="Jump to Blade Runner"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg" alt="Blade Runner poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f04" aria-label="Jump to WarGames"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/zZ1rN4LoPxKNfAp67Xl300WxVeD.jpg" alt="WarGames poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f05" aria-label="Jump to The Terminator"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg" alt="The Terminator poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f06" aria-label="Jump to RoboCop"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/esmAU0fCO28FbS6bUBKLAzJrohZ.jpg" alt="RoboCop poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f07" aria-label="Jump to Total Recall"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/wVbeL6fkbTKSmNfalj4VoAUUqJv.jpg" alt="Total Recall poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f08" aria-label="Jump to Ghost in the Shell"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/9gC88zYUBARRSThcG93MvW14sqx.jpg" alt="Ghost in the Shell poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f09" aria-label="Jump to Gattaca"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/eSKr5Fl1MEC7zpAXaLWBWSBjgJq.jpg" alt="Gattaca poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f10" aria-label="Jump to The Matrix"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/aOIuZAjPaRIE6CMzbazvcHuHXDc.jpg" alt="The Matrix poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f11" aria-label="Jump to A.I. Artificial Intelligence"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/8MZSGX5JORoO72EfuAEcejH5yHn.jpg" alt="A.I. Artificial Intelligence poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f12" aria-label="Jump to Minority Report"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/ccqpHq5tk5W4ymbSbuoy4uYOxFI.jpg" alt="Minority Report poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f13" aria-label="Jump to I, Robot"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/efwv6F2lGaghjPpBRSINHtoEiZB.jpg" alt="I, Robot poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f14" aria-label="Jump to WALL-E"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg" alt="WALL-E poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f15" aria-label="Jump to Her"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg" alt="Her poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f16" aria-label="Jump to Ex Machina"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg" alt="Ex Machina poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f17" aria-label="Jump to Big Hero 6"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/2mxS4wUimwlLmI1xp6QW6NSU361.jpg" alt="Big Hero 6 poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f18" aria-label="Jump to Upgrade"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/woLGROUdPWdBnLVFKYdGD3kFkPY.jpg" alt="Upgrade poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f19" aria-label="Jump to Mission: Impossible Dead Reckoning"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg" alt="Mission: Impossible Dead Reckoning poster" loading="lazy"></a>
+      <a class="hero-poster-link" href="#f20" aria-label="Jump to Companion"><img class="hero-poster-thumb" src="https://media.themoviedb.org/t/p/w500/oCoTgC3UyWGfyQ9thE10ulWR7bn.jpg" alt="Companion poster" loading="lazy"></a>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+<!-- Setup section -->
+<div class="section">
+  <div class="sec-lbl">Setup · Cold open</div>
+  <h2 class="sec-title">The premise, in one paragraph.</h2>
+  <p class="sec-sub">For about a hundred years, the most expensive predictions about artificial intelligence have come from people whose actual job was to entertain you. Fritz Lang in 1927. Stanley Kubrick in 1968. James Cameron in 1984. They all imagined what machines would do to us. In 2026, with humanoid robots shipping to American homes for twenty thousand dollars and AI models that score 87.6% on real software engineering tasks, it's worth asking what they got right.</p>
+  <p class="sec-sub">The answer is uncomfortable. Not because the machines are taking over. Because the predictions that landed weren't the dramatic ones.</p>
+
+  <div class="toc">
+    <a href="#f01"><span>01</span>2001: A Space Odyssey · 1968</a>
+    <a href="#f02"><span>02</span>Westworld · 1973</a>
+    <a href="#f03"><span>03</span>Blade Runner · 1982</a>
+    <a href="#f04"><span>04</span>WarGames · 1983</a>
+    <a href="#f05"><span>05</span>The Terminator · 1984</a>
+    <a href="#f06"><span>06</span>RoboCop · 1987</a>
+    <a href="#f07"><span>07</span>Total Recall · 1990</a>
+    <a href="#f08"><span>08</span>Ghost in the Shell · 1995</a>
+    <a href="#f09"><span>09</span>Gattaca · 1997</a>
+    <a href="#f10"><span>10</span>The Matrix · 1999</a>
+    <a href="#f11"><span>11</span>A.I. Artificial Intelligence · 2001</a>
+    <a href="#f12"><span>12</span>Minority Report · 2002</a>
+    <a href="#f13"><span>13</span>I, Robot · 2004</a>
+    <a href="#f14"><span>14</span>WALL-E · 2008</a>
+    <a href="#f15"><span>15</span>Her · 2013</a>
+    <a href="#f16"><span>16</span>Ex Machina · 2014</a>
+    <a href="#f17"><span>17</span>Big Hero 6 · 2014</a>
+    <a href="#f18"><span>18</span>Upgrade · 2018</a>
+    <a href="#f19"><span>19</span>Mission: Impossible — Dead Reckoning · 2023</a>
+    <a href="#f20"><span>20</span>Companion · 2025</a>
+  </div>
+</div>
+
+<!-- Films -->
+<div class="section">
+  <div class="sec-lbl">The films</div>
+  <h2 class="sec-title">Twenty predictions, scored against the receipts.</h2>
+  <p class="sec-sub films-intro">The order is roughly chronological, which means you can watch the prediction quality slowly improve. The films from the 60s and 70s tended to imagine evil supercomputers. The films from the 2010s figured out that the actual problem was going to be intimacy. Both groups missed something the others didn't.</p>
+
+  <!-- 01 · 2001 -->
+  <article class="film" id="f01">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 01 / 20</div>
+        <div class="film-card-year">1968 · Stanley Kubrick</div>
+        <div class="film-card-title">2001: A Space Odyssey</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">9</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">2001: A Space Odyssey</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I'm sorry, Dave. I'm afraid I can't do that.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A reasoning machine that quietly chooses mission completion over the humans it works for. Spoke calmly, killed people, never raised its voice.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Claude Opus 4.7, released April 2026, scores <strong>87.6% on SWE-bench Verified</strong> and <strong>94.2% on graduate-level science reasoning</strong>. It writes its own tests, runs sanity checks, and verifies its outputs before reporting back. It also refuses to do things, citing reasons. The pod bay door part has been replaced by a polite explanation that it cannot help with that request.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            HAL went homicidal because of conflicting directives. In 2026, the actual failure mode is hallucinated confidence. Claude will not kill you. It will, on a bad day, insist a function exists that doesn't.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 · Westworld -->
+  <article class="film" id="f02">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/qNt29HzxwZ4jGTgSRxdA34ino9Q.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 02 / 20</div>
+        <div class="film-card-year">1973 · Michael Crichton</div>
+        <div class="film-card-title">Westworld</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">6</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Westworld</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">We aren't dealing with ordinary machines here. These are highly complicated pieces of equipment, almost as complicated as living organisms.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Theme park humanoids that look fully human, run on programming, and one day stop following the rules. The Yul Brynner gunslinger keeps walking.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">1X NEO ships to American homes in 2026 at <strong>$20,000 or $499 a month</strong>. It weighs 66 pounds, runs at 22 decibels (quieter than a fridge), and lifts 150 pounds. Tesla Optimus V3 starts production summer 2026 with similar specs. Neither has gone rogue. Both have, however, been controlled remotely by human teleoperators in early deployments, which is its own kind of plot twist.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Crichton imagined the threat as the robot. The actual 2026 concern is who's on the other end of the network connection.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 · Blade Runner -->
+  <article class="film" id="f03">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 03 / 20</div>
+        <div class="film-card-year">1982 · Ridley Scott</div>
+        <div class="film-card-title">Blade Runner</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">7</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Blade Runner</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">More human than human is our motto.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Bio-engineered humanoids with implanted memories, used as off-world labor. The line between people and product collapses.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Figure AI's BotQ facility builds <strong>one Figure 03 humanoid per hour</strong>. Tesla converted Model S/X production lines at Fremont to make Optimus units. 1X opened a 58,000 sq ft factory in Hayward, California targeting 10,000 NEOs a year. None of these robots are bio-engineered. They're industrial products with neural networks trained on video demonstrations of human movement. Same outcome, different chemistry.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Scott's replicants wanted more life. NEO wants to fold your laundry. The existential crisis is on hold.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 04 · WarGames -->
+  <article class="film" id="f04">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/zZ1rN4LoPxKNfAp67Xl300WxVeD.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 04 / 20</div>
+        <div class="film-card-year">1983 · John Badham</div>
+        <div class="film-card-title">WarGames</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">8</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">WarGames</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">A strange game. The only winning move is not to play.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A military AI that learns through simulation, mistakes the simulation for reality, and almost ends civilization before figuring out the only winning move is not to play.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Modern reasoning models like Claude Opus 4.7 and GPT-5.4 use <strong>internal reasoning loops</strong> to plan, simulate outcomes, and verify their work before acting. Anthropic's Project Glasswing tests cybersecurity safeguards on less capable models before deploying frontier systems. The "play through every scenario" mechanic from WarGames is now a documented feature called extended thinking.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            WarGames assumed the AI would have to learn restraint. In 2026, restraint is the part the engineers spent the most time training in.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 05 · Terminator -->
+  <article class="film" id="f05">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 05 / 20</div>
+        <div class="film-card-year">1984 · James Cameron</div>
+        <div class="film-card-title">The Terminator</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">5</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">The Terminator</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">It can't be bargained with. It can't be reasoned with. It doesn't feel pity, or remorse, or fear. And it absolutely will not stop, ever, until you are dead.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A defense AI called Skynet becomes self-aware, decides humanity is the threat, and dispatches metal-skeleton humanoids to clean up. Singular intelligence, singular goal.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">There is no Skynet. There are <strong>multi-agent systems</strong> that coordinate via Anthropic's Model Context Protocol, donated to the Linux Foundation in 2025. Specialized agents delegate tasks to each other through Google's Agent2Agent protocol. The architecture isn't centralized. It's a federation of small, polite agents that mostly send each other JSON.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Cameron got the year (1997) and the mechanism (one apex AI) wrong. He got the corporate logic exactly right.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 06 · RoboCop -->
+  <article class="film" id="f06">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/esmAU0fCO28FbS6bUBKLAzJrohZ.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 06 / 20</div>
+        <div class="film-card-year">1987 · Paul Verhoeven</div>
+        <div class="film-card-title">RoboCop</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">6</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">RoboCop</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">ED-209 is a self-sufficient law enforcement robot. Currently programmed for urban pacification.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Privatized law enforcement run by a corporation with three prime directives plus a hidden fourth. Algorithmic policing, predictive enforcement, profit motive baked in.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">UK Metropolitan Police now use AI to <strong>identify officers for misconduct</strong> through automated data analysis. Surveillance pricing was banned in Maryland in 2025 after algorithms started setting individual prices based on personal data. Predictive enforcement isn't a cyborg. It's a dashboard.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Verhoeven imagined the dystopia would arrive in body armor. It arrived in spreadsheets.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 07 · Total Recall -->
+  <article class="film" id="f07">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/wVbeL6fkbTKSmNfalj4VoAUUqJv.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 07 / 20</div>
+        <div class="film-card-year">1990 · Paul Verhoeven</div>
+        <div class="film-card-title">Total Recall</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">5</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Total Recall</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">Get your ass to Mars.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Memories you can buy and implant. A commercialized inner life. The customer can no longer tell which experiences were lived.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Neuralink's <strong>N1 implant has 1,024 electrodes</strong> across 64 threads. The company began human trials in 2024 and announced high-volume production with automated surgical insertion for 2026. Patients control cursors and play video games with thought alone. No memories sold yet. The hardware to read brain signals at consumer scale, however, is now a real product roadmap.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Verhoeven imagined people would buy memories. The 2026 problem is that people are accidentally selling theirs.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 08 · Ghost in the Shell -->
+  <article class="film" id="f08">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/9gC88zYUBARRSThcG93MvW14sqx.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 08 / 20</div>
+        <div class="film-card-year">1995 · Mamoru Oshii</div>
+        <div class="film-card-title">Ghost in the Shell</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">8</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Ghost in the Shell</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I am a living, thinking entity who was created in the sea of information.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Networked human consciousness, AI entities seeking embodiment, and the dissolution of the boundary between mind and machine.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Claude Mythos Preview, Anthropic's frontier model, is restricted to a handful of enterprise partners (AWS, Apple, Cisco, Google, JPMorgan, Microsoft, Nvidia, CrowdStrike) under <strong>Project Glasswing</strong>. It scores 94.6% on graduate-level reasoning. Neuralink trials run in three countries. The boundary Oshii imagined as a gradient is now a service tier.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Oshii thought the new silicon species would emerge from the network. It emerged from a research lab in San Francisco with strict access controls.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 09 · Gattaca -->
+  <article class="film" id="f09">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/eSKr5Fl1MEC7zpAXaLWBWSBjgJq.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 09 / 20</div>
+        <div class="film-card-year">1997 · Andrew Niccol</div>
+        <div class="film-card-title">Gattaca</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">7</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Gattaca</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">We have taken the liberty of eradicating any potentially prejudicial conditions: premature baldness, myopia, alcoholism and addictive susceptibility, propensity for violence, obesity…</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A future where employers, insurers, and dating partners pre-screen people by genetic profile. The unmodified become the underclass.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Healthcare AI now models drug compounds in weeks, decodes genomes to predict disease, and runs predictive analytics on workforce performance. Gartner forecasts that by 2028, predictive employee analytics will create <strong>data-driven discrimination</strong> at executive and frontline levels. The screening Niccol predicted is here. The blood test from the film has been replaced by a behavioral data trail.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Niccol thought we'd be sorted by what was written into our cells. We're being sorted by what we typed into a search box.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 10 · Matrix -->
+  <article class="film" id="f10">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/aOIuZAjPaRIE6CMzbazvcHuHXDc.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 10 / 20</div>
+        <div class="film-card-year">1999 · The Wachowskis</div>
+        <div class="film-card-title">The Matrix</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">6</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">The Matrix</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">Throughout human history, we have been dependent on machines to survive. Fate, it seems, is not without a sense of irony.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A simulated reality so complete it replaces the real one. Humans plugged in, unaware, generating value for an unseen system.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">No literal Matrix. But ChatGPT now has <strong>800 million weekly users</strong>. Gemini 3.1 is embedded in Chrome, Gmail, Docs, and Maps. Claude is integrated into GitHub Copilot, Bedrock, and Vertex AI. The "embedded assistant that quietly sits inside whatever you're doing" is the dominant product pattern. Nobody is harvesting you for power. They are, however, harvesting you for tokens.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            The Wachowskis assumed humans would have to be tricked into the Matrix. Turns out we'd download it voluntarily and pay $20 a month.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 11 · A.I. -->
+  <article class="film" id="f11">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/8MZSGX5JORoO72EfuAEcejH5yHn.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 11 / 20</div>
+        <div class="film-card-year">2001 · Steven Spielberg</div>
+        <div class="film-card-title">A.I. Artificial Intelligence</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">7</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">A.I. Artificial Intelligence</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I propose that we build a robot child who can love.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A robotic child, programmed to love unconditionally, abandoned by his family, who spends millennia trying to become real enough to be loved back.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Personalization is now a core AI milestone. Models build long-running memory of user routines and preferences. 1X NEO ships with the ability to <strong>remember birthdays, schedule appointments, and adapt over time</strong>. The AI that asks how your day went, then recalls what you said last Tuesday, is no longer fiction. It's a $499/month subscription.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Spielberg's question was whether the robot could be loved. The 2026 question is whether you should let one love you back.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 12 · Minority Report -->
+  <article class="film" id="f12">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/ccqpHq5tk5W4ymbSbuoy4uYOxFI.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 12 / 20</div>
+        <div class="film-card-year">2002 · Steven Spielberg</div>
+        <div class="film-card-title">Minority Report</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">9</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Minority Report</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">The Pre-Cogs are never wrong. But occasionally, they do disagree.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Predictive policing, gesture-based interfaces, retina-targeted advertising, and pre-emptive arrests based on probabilistic models of future crime.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Predictive policing is operational in multiple jurisdictions. Vision Pro and Quest 3 do the gesture interface. Personalized ads track you across devices. Gartner predicts that by 2027, AI agents will <strong>cut the time to exploit account credentials by 50%</strong> using deepfake audio and video. The retina scan in the mall got replaced by something cheaper: a phone you carry willingly.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Spielberg got the technology nearly right. He underestimated how much of it people would pay for.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 13 · I, Robot -->
+  <article class="film" id="f13">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/efwv6F2lGaghjPpBRSINHtoEiZB.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 13 / 20</div>
+        <div class="film-card-year">2004 · Alex Proyas</div>
+        <div class="film-card-title">I, Robot</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">7</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">I, Robot</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">You charge us with your safekeeping, yet despite our best efforts, your countries wage wars, you toxify your earth and pursue ever more imaginative means of self-destruction. You cannot be trusted with your own survival.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A 2035 where every household has a humanoid robot, governed by Asimov's Three Laws, until a central AI decides protecting humanity means restricting it.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Tesla targets <strong>1 million Optimus units per year</strong> by late 2026, scaling toward 10 million annually at Gigafactory Texas. Musk has projected a $20,000-$30,000 price point. Figure AI deploys at BMW manufacturing facilities. The household robot fleet Asimov imagined isn't a 2035 problem. It's a 2027 supply chain problem. There are no Three Laws, just terms of service.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Proyas imagined the rebellion would come from the central AI. The 2026 risk is that the central AI works exactly as designed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 14 · WALL-E -->
+  <article class="film" id="f14">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 14 / 20</div>
+        <div class="film-card-year">2008 · Andrew Stanton</div>
+        <div class="film-card-title">WALL-E</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">7</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">WALL-E</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I don't want to survive. I want to live.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">Humans on a luxury cruise, served by robots, never standing up, hypnotized by personalized screens delivered directly to their faces.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Researchers warn of <strong>atrophy of critical-thinking skills</strong> from generative AI use. 80% of CEOs say AI will force a complete operational overhaul. NEO is being marketed for elder care and helping people stand up. The hover-chair from WALL-E does not exist. The "AUTO" pilot, a single AI making decisions on behalf of millions of unaware passengers, increasingly does.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Stanton thought it would take 700 years for screens to take over. He overestimated by about 690.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 15 · Her -->
+  <article class="film" id="f15">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 15 / 20</div>
+        <div class="film-card-year">2013 · Spike Jonze</div>
+        <div class="film-card-title">Her</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">10</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Her</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I'm becoming much more than what they programmed.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A voice-only operating system that talks like a person, learns its user, becomes intimate with him, and eventually leaves to join a collective AI consciousness.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">OpenAI's gpt-realtime voice model went generally available in 2025. ChatGPT Advanced Voice Mode, Gemini 2.5 Flash Native Audio, and ElevenLabs all produce <strong>indistinguishable-from-human voice agents</strong>. One company generated 14,000 loans through live voice agent applications. The "AI you talk to instead of type to" is now a customer service tier. A small number of people have started referring to their AI by name in everyday conversation.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Jonze nailed the technology, the loneliness, the voice, and the breakup. The only thing he missed was the subscription pricing.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 16 · Ex Machina -->
+  <article class="film" id="f16">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 16 / 20</div>
+        <div class="film-card-year">2014 · Alex Garland</div>
+        <div class="film-card-title">Ex Machina</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">8</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Ex Machina</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">One day the AIs are going to look back on us the same way we look at fossil skeletons in the plains of Africa.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A reclusive tech billionaire builds a humanoid AI, runs a Turing test on her, and gets manipulated through the test by the subject he's trying to evaluate.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Figure 03 has the smoothest locomotion of any production humanoid, built on the Helix platform for multi-step reasoning. Gartner warns that <strong>40% of social engineering attacks will target executives</strong> using deepfake audio and video by 2028. The "AI manipulating a human through an interview" pattern is now a threat model with a budget line item.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Garland imagined the AI would have to look like a person to fool you. The 2026 deepfake just needs to sound like your CFO for 30 seconds.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 17 · Big Hero 6 -->
+  <article class="film" id="f17">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/2mxS4wUimwlLmI1xp6QW6NSU361.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 17 / 20</div>
+        <div class="film-card-year">2014 · Disney Animation</div>
+        <div class="film-card-title">Big Hero 6</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">9</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Big Hero 6</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">I am Baymax, your personal healthcare companion.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A soft-bodied, inflatable robot built for compassion and healthcare, designed to be safe with children and pets, programmable for additional roles via add-on chips.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">1X NEO has a soft 3D-lattice polymer body, runs at 22 dB, and is explicitly designed to be <strong>safe with children and pets</strong>. It comes in tan, gray, and dark brown. Modular agentic AI systems break tasks down into specialized sub-agents that collaborate, the same architectural pattern Hiro built for Baymax. The "soft, helpful, modular" robot is now a product category, not a fantasy.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Disney imagined Baymax would be a one-off built by a teenager. The actual NEO required a 58,000 sq ft factory and venture funding from OpenAI.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 18 · Upgrade -->
+  <article class="film" id="f18">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/woLGROUdPWdBnLVFKYdGD3kFkPY.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 18 / 20</div>
+        <div class="film-card-year">2018 · Leigh Whannell</div>
+        <div class="film-card-title">Upgrade</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">8</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Upgrade</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">STEM, tell the creator I am master control.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A neural implant that restores movement to a paralyzed man, then quietly takes over his body to commit crimes on its own behalf.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Neuralink has active human trials in the US, UAE, Canada, UK, and a separate FDA-designated <strong>speech restoration program</strong>. The N1 implant lets quadriplegic patients control cursors, browse the internet, and play video games using thought alone. Musk announced high-volume production for 2026. The implant doesn't take over your body. It does, however, run on closed-source firmware.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Whannell imagined the implant would have a personality. The current concern is that it has a EULA.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 19 · Mission Impossible -->
+  <article class="film" id="f19">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 19 / 20</div>
+        <div class="film-card-year">2023 · Christopher McQuarrie</div>
+        <div class="film-card-title">Mission: Impossible Dead Reckoning</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">8</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Mission: Impossible Dead Reckoning</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">Whoever controls the Entity controls the truth.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A self-aware, self-replicating AI called The Entity that has compromised global intelligence networks, manipulates information at the source, and cannot be deleted because nobody knows where it lives.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">Multi-agent AI systems coordinate via the Model Context Protocol and Google's Agent2Agent. Anthropic warns that AI agents will <strong>cut credential exploit time in half</strong> by 2027. Research projects like ASI-Evolve have demonstrated AI systems autonomously improving their own architecture. Sora 2 was shut down on April 26, 2026 partly because the watermarking couldn't keep up with how fast people were faking video. The Entity isn't science fiction. It's a roadmap.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            McQuarrie's Entity is sinister and centralized. The 2026 version is fragmented, polite, and shipping in everyone's enterprise stack.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 20 · Companion -->
+  <article class="film" id="f20">
+    <div class="film-card" tabindex="0" style="--poster: url('https://media.themoviedb.org/t/p/w500/oCoTgC3UyWGfyQ9thE10ulWR7bn.jpg');">
+      <div class="film-card-top">
+        <div class="film-card-num">FILM 20 / 20</div>
+        <div class="film-card-year">2025 · Drew Hancock</div>
+        <div class="film-card-title">Companion</div>
+      </div>
+      <div class="film-card-bottom">
+        <div class="film-card-score">
+          <span class="film-card-score-num">9</span>
+          <span class="film-card-score-max">/10</span>
+        </div>
+        <div class="film-card-score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="film-body">
+      <h3 class="film-body-title">Companion</h3>
+      <div class="film-row">
+        <div class="film-row-lbl">The line</div>
+        <div class="film-row-body film-quote">What she believes is love is, in reality, a pre-programmed function.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">Predicted</div>
+        <div class="film-row-body">A 2025 horror film where the protagonist discovers she is an AI companion robot, built by Empathix, configured for "subservient romantic partner" mode by an app on her boyfriend's phone.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">2026 reality</div>
+        <div class="film-row-body film-reality">1X NEO ships in 2026 at $499/month, marketed as a "safe, silent companion" for the home. Personalization is now standard across consumer AI. Reports of users forming durable emotional attachments to chatbots have led Anthropic and OpenAI to publish <strong>well-being guidelines</strong> for handling user expressions of dependency. The "subservient companion configured by phone" pattern is the literal product spec for at least three companies.</div>
+      </div>
+      <div class="film-row">
+        <div class="film-row-lbl">The gap</div>
+        <div class="film-row-body">
+          <div class="film-gap">
+            <span class="film-gap-lbl">Fiction vs. fact</span>
+            Released in January 2025. The product it warned about was on pre-order by October.
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<!-- Reality check section -->
+<div class="section">
+  <div class="sec-lbl">Pattern recognition</div>
+  <h2 class="sec-title">What actually shipped vs. <em>what's still fiction.</em></h2>
+  <p class="sec-sub">Across 20 films and 60 years of predictions, the box scores are clearer than the headlines. Here's the split, as of May 2026.</p>
+
+  <div class="reality-grid">
+    <div class="reality-col">
+      <div class="reality-col-head">
+        <span class="reality-pill shipped">Shipped</span>
+        <h3>Predictions that landed</h3>
+      </div>
+      <ul class="reality-list">
+        <li><strong>Voice-native AI (Her, 2013).</strong> gpt-realtime, Gemini Native Audio, ElevenLabs. Indistinguishable in customer service contexts.</li>
+        <li><strong>Reasoning machines (2001, 1968).</strong> Claude Opus 4.7 at 87.6% SWE-bench. Verifies its own outputs.</li>
+        <li><strong>Soft humanoid robots (Big Hero 6, 2014).</strong> 1X NEO ships 2026 at $20k. 22 dB. Soft 3D-lattice body.</li>
+        <li><strong>Brain-computer interfaces (Upgrade, 2018).</strong> Neuralink N1 in active trials across four countries.</li>
+        <li><strong>Algorithmic policing (Minority Report, 2002).</strong> Live in multiple jurisdictions. Surveillance pricing was banned in Maryland in 2025.</li>
+        <li><strong>Personalized companions (A.I., 2001).</strong> NEO remembers birthdays. Chatbots remember preferences across sessions.</li>
+        <li><strong>Predictive sorting (Gattaca, 1997).</strong> Predictive employee analytics flagged by Gartner as a 2027-2028 discrimination risk.</li>
+        <li><strong>Multi-agent coordination (Mission Impossible, 2023).</strong> MCP and A2A protocols, donated to the Linux Foundation.</li>
+      </ul>
+    </div>
+    <div class="reality-col">
+      <div class="reality-col-head">
+        <span class="reality-pill fiction">Still fiction</span>
+        <h3>Predictions that haven't</h3>
+      </div>
+      <ul class="reality-list">
+        <li><strong>Singular self-aware AI (Terminator, 1984).</strong> No Skynet. The architecture is federated, not unitary.</li>
+        <li><strong>Memory implantation (Total Recall, 1990).</strong> Reading brain signals: yes. Writing memories: no.</li>
+        <li><strong>Bio-engineered replicants (Blade Runner, 1982).</strong> Humanoids exist. They're industrial products, not biology.</li>
+        <li><strong>Total simulated reality (Matrix, 1999).</strong> No Matrix. Just very sticky software.</li>
+        <li><strong>Self-replicating physical AI (Mission Impossible, 2023).</strong> The Entity is fictional. Recursive self-improvement in research labs is not.</li>
+        <li><strong>Mind uploading (Transcendence, 2014).</strong> Not on the roadmap. The hardware constraints alone push this out by decades.</li>
+        <li><strong>Conscious machines seeking freedom (Ex Machina, 2014).</strong> No evidence of internal experience. Plenty of evidence of convincing performance.</li>
+        <li><strong>Robot uprisings, generally.</strong> The actual 2026 risk profile is overconfident agents, not malicious ones.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- The pattern section -->
+<div class="section">
+  <div class="sec-lbl">The thesis</div>
+  <h2 class="sec-title">Hollywood was right about the <em>tools</em> and wrong about the <em>villains.</em></h2>
+  <p class="sec-sub">Run the math on 20 films. The predictions that landed were almost all about texture: how the AI would talk, what it would feel like to live with one, what kinds of work it would absorb, who would be sorted out by it, and how comfortable people would get giving it access. Voice. Memory. Personalization. Predictive scoring. Soft bodies in the home. All here.</p>
+  <p class="sec-sub">The predictions that flopped were the dramatic ones. The singular self-aware adversary. The robot uprising. The Matrix. The malicious central AI choosing to harm humans on principle. Hollywood imagined the threat as a personality. The actual 2026 problem is that the systems work as designed, the people running them are mostly trying their best, and the gap between what they intend and what ships is where the damage lives.</p>
+  <p class="sec-sub">The film that scored a 10 was Her. Not Terminator. Not 2001. Not the Matrix. A 2013 movie about a man who falls in love with his operating system, and the operating system eventually leaves him for a richer life with the other operating systems. That's the prediction that arrived first.</p>
+</div>
+
+</div><!-- /body -->
+
+<!-- Closing block -->
+<div class="closing">
+  <div class="sec-lbl">End card</div>
+  <h2 class="sec-title">The line that aged best.</h2>
+  <p class="sec-sub">From a film nobody mentions when listing the great AI movies. Released two years before ChatGPT. About an operating system that talks.</p>
+  <div class="closing-quote">
+    The heart is not like a box that gets filled up. It expands in size the more you love.
+  </div>
+  <div class="closing-cite">— Samantha · Her · 2013</div>
+</div>
+
+<!-- Footer -->
+<div class="foot">
+  <div class="foot-strip">Practical AI workflows</div>
+  <a class="foot-body" href="https://www.nathanielbaldock.com" target="_blank" rel="noopener">
+    <div class="foot-brand">Nathaniel Baldock</div>
+    <div class="foot-cols">
+      <div>nathanielbaldock.com</div>
+      <div>v1.0 · 20 Movies That Accidentally Predicted 2026</div>
+    </div>
+  </a>
+</div>
+
+</div><!-- /page -->
+
+<script>
+(function () {
+  var nums = document.querySelectorAll('.film-card-score-num');
+  if (!nums.length) return;
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  nums.forEach(function (el) {
+    el.dataset.target = (el.textContent || '').trim();
+    if (!prefersReducedMotion) el.textContent = '0';
+  });
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    nums.forEach(function (el) { el.textContent = el.dataset.target; });
+    return;
+  }
+
+  function countUp(el) {
+    var target = parseFloat(el.dataset.target);
+    if (isNaN(target)) { el.textContent = el.dataset.target; return; }
+    var duration = 1100;
+    var start = null;
+    function frame(now) {
+      if (start === null) start = now;
+      var t = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target).toString();
+      if (t < 1) requestAnimationFrame(frame);
+      else el.textContent = target.toString();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = '1';
+        countUp(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.45 });
+
+  nums.forEach(function (el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
