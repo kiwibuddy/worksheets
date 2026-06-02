@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 1 — The Sacred-Secular Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan:    #00b4d8;
+  --cyan-dk: #007fa8;
+  --ink:     #111418;
+  --ink-mid: #334349;
+  --ink-lt:  #6b8090;
+  --cream:   #f2ede4;
+  --card:    #ffffff;
+  --border:  #ddd8ce;
+  --yellow:  #f5c518;
+  --navy:    #0d1e36;
+  --radius:  12px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── CYAN HEADER ── */
+.top-band {
+  background: linear-gradient(135deg, #007fa8 0%, #00b4d8 55%, #00d4f0 100%);
+  padding: 44px 28px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.top-band::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0; height: 36px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.top-inner { max-width: 860px; margin: 0 auto; }
+
+.day-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 4px;
+  color: rgba(0,0,0,0.45); text-transform: uppercase; margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 9vw, 82px);
+  line-height: 0.92; text-transform: uppercase;
+  color: #0a1a22; letter-spacing: 1px; margin-bottom: 10px;
+}
+.top-sub { font-size: 15px; font-weight: 400; color: rgba(0,0,0,0.55); max-width: 520px; line-height: 1.6; }
+
+/* ── PAGE BODY ── */
+.page { max-width: 860px; margin: 0 auto; padding: 36px 28px 64px; }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--cyan-dk); margin-bottom: 6px;
+}
+
+/* ── INSTRUCTION ── */
+.instruct {
+  font-size: 13.5px; font-weight: 300; color: var(--ink-mid);
+  line-height: 1.65; margin-bottom: 22px;
+}
+.instruct strong { color: var(--ink); font-weight: 600; }
+
+/* ── SLIDER GRID ── */
+.slider-grid { display: grid; gap: 10px; margin-bottom: 32px; }
+
+.slider-row {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px 16px;
+}
+.area-name {
+  font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px;
+}
+.area-sub {
+  font-size: 12px; font-weight: 300; color: var(--ink-lt); margin-bottom: 12px;
+}
+.slider-wrap {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.slider-ends {
+  display: flex; justify-content: space-between;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--ink-lt);
+}
+input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 5px; border-radius: 3px; outline: none; cursor: pointer;
+  background: linear-gradient(to right,
+    var(--cyan) var(--pct, 50%),
+    #ddd var(--pct, 50%)
+  );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--cyan); border: 3px solid #fff;
+  box-shadow: 0 1px 6px rgba(0,180,216,0.4); cursor: pointer;
+  transition: transform .15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--cyan); border: 3px solid #fff; cursor: pointer;
+}
+.value-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 1.5px;
+  color: var(--cyan-dk); margin-top: 2px;
+}
+
+/* ── RADAR CHART ── */
+.radar-section {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px 20px;
+  margin: 20px 0 20px;
+}
+.radar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--cyan-dk); margin-bottom: 4px;
+}
+.radar-sub {
+  font-size: 12.5px; font-weight: 300; color: var(--ink-lt);
+  line-height: 1.5; margin-bottom: 16px;
+}
+#radarSvg { display: block; margin: 0 auto; width: 100%; max-width: 340px; height: auto; }
+
+/* ── VERSE PULL ── */
+.verse-pull {
+  border-left: 4px solid var(--cyan);
+  background: #e8f7fb;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 18px 22px;
+  margin-bottom: 30px;
+}
+.verse-text {
+  font-size: 15px; font-weight: 400; font-style: italic;
+  color: var(--ink); line-height: 1.7; margin-bottom: 8px;
+}
+.verse-ref {
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--cyan-dk); font-weight: 700; font-style: normal;
+}
+
+/* ── RESPONSE CARDS ── */
+.r-block { margin-bottom: 26px; }
+.r-q { font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 5px; }
+.r-sub { font-size: 13.5px; font-weight: 300; color: var(--ink-lt); line-height: 1.6; margin-bottom: 14px; }
+
+textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 300; line-height: 1.7;
+  padding: 13px 16px; resize: vertical; min-height: 90px; outline: none;
+  transition: border-color .2s;
+}
+textarea::placeholder { color: var(--ink-lt); font-style: italic; opacity: .75; }
+textarea:focus { border-color: var(--cyan-dk); }
+
+/* ── COMMITMENT ── */
+.commit {
+  background: var(--navy); color: #fff;
+  border-radius: var(--radius); padding: 28px 28px 30px;
+}
+.commit .sec-label { color: var(--yellow); }
+.commit-q { font-size: 18px; font-weight: 700; line-height: 1.35; color: #fff; margin-bottom: 5px; }
+.commit-sub { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 16px; }
+textarea.on-dark {
+  background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.18); color: #fff;
+}
+textarea.on-dark::placeholder { color: rgba(255,255,255,.3); }
+textarea.on-dark:focus { border-color: var(--yellow); }
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 48px; display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--ink-lt); letter-spacing: 1.5px;
+  text-transform: uppercase; border-top: 1.5px solid var(--border); padding-top: 18px;
+}
+
+@media (max-width: 540px) {
+  .page { padding: 28px 18px 52px; }
+  h1 { font-size: 50px; }
+  .top-band { padding: 36px 18px 44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- CYAN HEADER -->
+<div class="top-band">
+  <div class="top-inner">
+    <div class="day-tag">Day 1 &nbsp;·&nbsp; Worldview &amp; Spheres</div>
+    <h1>The Sacred–<br>Secular Audit</h1>
+    <p class="top-sub">Most Christians carry an invisible divide between what feels "spiritual" and what feels "ordinary." This audit helps you find exactly where that split lives in your life.</p>
+  </div>
+</div>
+
+<div class="page">
+
+  <p class="instruct" style="margin-bottom:20px;">
+    <strong>How to use this:</strong> Drag each slider to show how connected that area of your life currently feels to God and your faith. Be honest — there are no right answers. Watch the chart below update as you go.
+  </p>
+
+  <!-- SLIDER GRID -->
+  <div class="slider-grid" id="sliderGrid">
+
+    <div class="slider-row">
+      <div class="area-name">Prayer &amp; Worship</div>
+      <div class="area-sub">Church, devotions, time with God</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="8" data-idx="0" oninput="onSlide(this)">
+        <div class="value-badge" id="vb0">Fully connected</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Work &amp; Vocation</div>
+      <div class="area-sub">Career, skills, daily tasks</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="4" data-idx="1" oninput="onSlide(this)">
+        <div class="value-badge" id="vb1">Mixed</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Money &amp; Finances</div>
+      <div class="area-sub">How you earn, spend, and save</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="3" data-idx="2" oninput="onSlide(this)">
+        <div class="value-badge" id="vb2">Mostly disconnected</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Entertainment &amp; Leisure</div>
+      <div class="area-sub">What you watch, listen to, do for fun</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="3" data-idx="3" oninput="onSlide(this)">
+        <div class="value-badge" id="vb3">Mostly disconnected</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Politics &amp; Society</div>
+      <div class="area-sub">Government, news, social issues</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="4" data-idx="4" oninput="onSlide(this)">
+        <div class="value-badge" id="vb4">Mixed</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Relationships &amp; Family</div>
+      <div class="area-sub">Marriage, friendship, community</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="6" data-idx="5" oninput="onSlide(this)">
+        <div class="value-badge" id="vb5">Connected</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <div class="area-name">Art, Music &amp; Creativity</div>
+      <div class="area-sub">What you make, enjoy, or consume</div>
+      <div class="slider-wrap">
+        <div class="slider-ends"><span>Disconnected</span><span>Fully connected</span></div>
+        <input type="range" min="1" max="10" value="5" data-idx="6" oninput="onSlide(this)">
+        <div class="value-badge" id="vb6">Mixed</div>
+      </div>
+    </div>
+
+  </div><!-- end slider-grid -->
+
+  <!-- VERSE -->
+  <div class="verse-pull">
+    <div class="verse-text">"Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is — his good, pleasing and perfect will."</div>
+    <div class="verse-ref">Romans 12:2</div>
+  </div>
+
+  <!-- RESPONSE 1 -->
+  <div class="r-block">
+    <div class="sec-label">Observation</div>
+    <div class="r-q">Which areas scored lowest — and why do you think that is?</div>
+    <div class="r-sub">Look at where your chart shape collapses inward — those are your gaps. What has made those areas feel "secular" or separate from God? Was it what you were taught? What you experienced? What you simply assumed?</div>
+
+    <!-- LIVE RADAR CHART -->
+    <div class="radar-section">
+      <div class="radar-title">Your Sacred-Secular Map</div>
+      <div class="radar-sub">The chart updates live as you move the sliders above. A full outer shape means every area feels connected to God. Gaps show where the sacred-secular divide is strongest in your life.</div>
+      <svg id="radarSvg" viewBox="0 0 340 340"></svg>
+    </div>
+
+    <textarea placeholder="The areas most disconnected from God in my life are… and the reason I think that is…"></textarea>
+  </div>
+
+  <!-- RESPONSE 2 -->
+  <div class="r-block">
+    <div class="sec-label">Challenge</div>
+    <div class="r-q">The Switchfoot singer said a pastor is not more Christian than a volleyball coach. What's your honest reaction?</div>
+    <div class="r-sub">Do you agree? Disagree? Feel resistance or relief? What does your gut reaction tell you about how deeply the sacred-secular divide has shaped your thinking — even without you realising it?</div>
+    <textarea placeholder="My honest reaction is… and I think it reveals about my worldview that…"></textarea>
+  </div>
+
+  <!-- COMMITMENT -->
+  <div class="commit">
+    <div class="sec-label">Your Commitment</div>
+    <div class="commit-q">Name one area of your life where you want God to close the gap — this week.</div>
+    <div class="commit-sub">Romans 12 says transformation begins with renewing the mind. One specific, practical step to invite God into an area you've been keeping "secular."</div>
+    <textarea class="on-dark" placeholder="This week, I want to invite God into… by specifically doing…"></textarea>
+  </div>
+
+  <div class="footer">
+    <span>Worldview &amp; Spheres Teaching Series</span>
+    <span>Day 1 of 5 &nbsp;·&nbsp; Worksheet 3 of 3</span>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+/* ════════════════════════════════════
+   CONFIG
+════════════════════════════════════ */
+const LABELS = ['Prayer &\nWorship', 'Work &\nVocation', 'Money &\nFinances', 'Entertainment', 'Politics &\nSociety', 'Relationships', 'Art &\nCreativity'];
+const BADGE_LABELS = [
+  [1,'Disconnected'],[2,'Mostly disconnected'],[3,'Mostly disconnected'],
+  [4,'Mixed'],[5,'Mixed'],[6,'Connected'],[7,'Connected'],
+  [8,'Fully connected'],[9,'Fully connected'],[10,'Fully connected']
+];
+
+const values = [8, 4, 3, 3, 4, 6, 5]; // initial values
+
+/* ════════════════════════════════════
+   SLIDER LOGIC
+════════════════════════════════════ */
+function onSlide(el) {
+  const idx = parseInt(el.getAttribute('data-idx'));
+  const v   = parseInt(el.value);
+  values[idx] = v;
+
+  // Update gradient fill
+  const pct = ((v - 1) / 9 * 100).toFixed(1);
+  el.style.setProperty('--pct', pct + '%');
+
+  // Update badge
+  document.getElementById('vb' + idx).textContent = BADGE_LABELS[v - 1][1];
+
+  // Redraw radar
+  drawRadar();
+}
+
+// Initialise sliders
+document.querySelectorAll('input[type="range"]').forEach(sl => {
+  const idx = parseInt(sl.getAttribute('data-idx'));
+  const v   = parseInt(sl.value);
+  const pct = ((v - 1) / 9 * 100).toFixed(1);
+  sl.style.setProperty('--pct', pct + '%');
+  document.getElementById('vb' + idx).textContent = BADGE_LABELS[v - 1][1];
+});
+
+/* ════════════════════════════════════
+   RADAR CHART
+════════════════════════════════════ */
+const SVG_NS   = 'http://www.w3.org/2000/svg';
+const CX       = 170;
+const CY       = 170;
+const MAX_R    = 118;
+const N        = 7;
+const GRID_STEPS = 5;
+
+// Angle for axis i: start at top (-90°), go clockwise
+function axisAngle(i) {
+  return -Math.PI / 2 + i * (2 * Math.PI / N);
+}
+
+function polarPoint(r, angle) {
+  return [
+    CX + r * Math.cos(angle),
+    CY + r * Math.sin(angle)
+  ];
+}
+
+function pointsToStr(pts) {
+  return pts.map(p => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ');
+}
+
+function buildRadar() {
+  const svg = document.getElementById('radarSvg');
+  svg.innerHTML = ''; // clear
+
+  const defs = document.createElementNS(SVG_NS, 'defs');
+
+  // Gradient fill for data polygon
+  const grad = document.createElementNS(SVG_NS, 'radialGradient');
+  grad.id = 'radarGrad';
+  grad.setAttribute('cx', '50%'); grad.setAttribute('cy', '50%');
+  grad.setAttribute('r', '50%');
+  const s1 = document.createElementNS(SVG_NS, 'stop');
+  s1.setAttribute('offset', '0%'); s1.setAttribute('stop-color', '#00b4d8'); s1.setAttribute('stop-opacity', '0.35');
+  const s2 = document.createElementNS(SVG_NS, 'stop');
+  s2.setAttribute('offset', '100%'); s2.setAttribute('stop-color', '#007fa8'); s2.setAttribute('stop-opacity', '0.15');
+  grad.appendChild(s1); grad.appendChild(s2);
+  defs.appendChild(grad);
+  svg.appendChild(defs);
+
+  // ── GRID RINGS ──
+  for (let g = 1; g <= GRID_STEPS; g++) {
+    const r = MAX_R * (g / GRID_STEPS);
+    const pts = [];
+    for (let i = 0; i < N; i++) pts.push(polarPoint(r, axisAngle(i)));
+    const poly = document.createElementNS(SVG_NS, 'polygon');
+    poly.setAttribute('points', pointsToStr(pts));
+    poly.setAttribute('fill', 'none');
+    poly.setAttribute('stroke', g === GRID_STEPS ? '#00b4d8' : '#ccc');
+    poly.setAttribute('stroke-width', g === GRID_STEPS ? '1.5' : '0.8');
+    poly.setAttribute('stroke-dasharray', g === GRID_STEPS ? 'none' : '3,3');
+    svg.appendChild(poly);
+
+    // Ring value label (only innermost and outermost)
+    if (g === 1 || g === GRID_STEPS) {
+      const [lx, ly] = polarPoint(r + 2, axisAngle(0));
+      const lbl = document.createElementNS(SVG_NS, 'text');
+      lbl.setAttribute('x', lx.toFixed(1));
+      lbl.setAttribute('y', (ly - 4).toFixed(1));
+      lbl.setAttribute('text-anchor', 'middle');
+      lbl.setAttribute('font-size', '9');
+      lbl.setAttribute('fill', '#999');
+      lbl.setAttribute('font-family', 'DM Sans, sans-serif');
+      lbl.textContent = g === 1 ? '2' : '10';
+      svg.appendChild(lbl);
+    }
+  }
+
+  // ── AXIS SPOKES ──
+  for (let i = 0; i < N; i++) {
+    const [x, y] = polarPoint(MAX_R, axisAngle(i));
+    const line = document.createElementNS(SVG_NS, 'line');
+    line.setAttribute('x1', CX); line.setAttribute('y1', CY);
+    line.setAttribute('x2', x.toFixed(2)); line.setAttribute('y2', y.toFixed(2));
+    line.setAttribute('stroke', '#ccc'); line.setAttribute('stroke-width', '0.8');
+    svg.appendChild(line);
+  }
+
+  // ── DATA POLYGON (will be updated) ──
+  const dataPoly = document.createElementNS(SVG_NS, 'polygon');
+  dataPoly.id = 'dataPoly';
+  dataPoly.setAttribute('fill', 'url(#radarGrad)');
+  dataPoly.setAttribute('stroke', '#00b4d8');
+  dataPoly.setAttribute('stroke-width', '2.5');
+  dataPoly.setAttribute('stroke-linejoin', 'round');
+  svg.appendChild(dataPoly);
+
+  // ── DATA DOTS ──
+  for (let i = 0; i < N; i++) {
+    const dot = document.createElementNS(SVG_NS, 'circle');
+    dot.id = 'dot' + i;
+    dot.setAttribute('r', '5');
+    dot.setAttribute('fill', '#00b4d8');
+    dot.setAttribute('stroke', '#fff');
+    dot.setAttribute('stroke-width', '2');
+    svg.appendChild(dot);
+  }
+
+  // ── AXIS LABELS ──
+  const LABEL_R = MAX_R + 24;
+  for (let i = 0; i < N; i++) {
+    const angle = axisAngle(i);
+    const [lx, ly] = polarPoint(LABEL_R, angle);
+
+    // Split multi-line labels
+    const lines = LABELS[i].split('\n');
+    const lineH = 13;
+    const totalH = lines.length * lineH;
+    const startY = ly - (totalH / 2) + lineH / 2;
+
+    lines.forEach((line, li) => {
+      const t = document.createElementNS(SVG_NS, 'text');
+      t.setAttribute('x', lx.toFixed(1));
+      t.setAttribute('y', (startY + li * lineH).toFixed(1));
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('dominant-baseline', 'central');
+      t.setAttribute('font-size', '10');
+      t.setAttribute('font-weight', '700');
+      t.setAttribute('fill', '#334349');
+      t.setAttribute('font-family', 'DM Sans, sans-serif');
+      t.textContent = line;
+      svg.appendChild(t);
+    });
+  }
+
+  // Initial draw
+  updateDataPoly();
+}
+
+function updateDataPoly() {
+  const dataPoly = document.getElementById('dataPoly');
+  if (!dataPoly) return;
+
+  const pts = [];
+  for (let i = 0; i < N; i++) {
+    const r = MAX_R * (values[i] / 10);
+    pts.push(polarPoint(r, axisAngle(i)));
+
+    // Update dot
+    const dot = document.getElementById('dot' + i);
+    if (dot) {
+      dot.setAttribute('cx', pts[i][0].toFixed(2));
+      dot.setAttribute('cy', pts[i][1].toFixed(2));
+    }
+  }
+  dataPoly.setAttribute('points', pointsToStr(pts));
+}
+
+function drawRadar() {
+  updateDataPoly();
+}
+
+/* ════════════════════════════════════
+   SMOOTH ANIMATED ENTRANCE
+════════════════════════════════════ */
+function animateIn() {
+  // Start all values at 0, animate to actual values
+  const targets = [...values];
+  const start = performance.now();
+  const dur = 900;
+
+  function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+    for (let i = 0; i < N; i++) {
+      values[i] = Math.round(targets[i] * ease * 10) / 10 || 0.1;
+    }
+    updateDataPoly();
+    if (t < 1) requestAnimationFrame(step);
+    else {
+      for (let i = 0; i < N; i++) values[i] = targets[i];
+      updateDataPoly();
+    }
+  }
+
+  // Set starting values to 0 for animation
+  for (let i = 0; i < N; i++) values[i] = 0;
+  requestAnimationFrame(step);
+}
+
+window.addEventListener('load', () => {
+  buildRadar();
+  setTimeout(animateIn, 300);
+});
+</script>
+</body>
+</html>

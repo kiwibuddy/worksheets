@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 1 — WHO · WHY · WHAT: Your Life Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #f0ece3;
+  --cream-card: #ffffff;
+  --cream-mid:  #e2dbd0;
+  --ink:        #111418;
+  --ink-mid:    #334349;
+  --ink-light:  #7a8f9a;
+  --coral:      #e85e3c;
+  --green:      #2e9e72;
+  --blue:       #4cb5e8;
+  --radius:     12px;
+  /* durations */
+  --ring-dur: 0.9s;
+  --ring-ease: cubic-bezier(.4,0,.2,1);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 32px 72px;
+}
+
+/* ── HEADER ── */
+.day-tag { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:4px; color:var(--ink-light); text-transform:uppercase; margin-bottom:10px; }
+
+h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(50px,8.5vw,84px); line-height:.92; text-transform:uppercase; margin-bottom:8px; }
+h1 .c { color:var(--coral); }
+h1 .g { color:var(--green); }
+h1 .b { color:var(--blue);  }
+
+.sub { font-size:15px; font-weight:300; color:var(--ink-light); max-width:500px; line-height:1.65; margin-bottom:44px; }
+
+/* ══════════════════════════════════════════
+   ANIMATED DIAGRAM SECTION
+══════════════════════════════════════════ */
+.diagram-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+
+
+/* centred SVG layout */
+
+
+
+/* ── SVG CIRCLES ── */
+.circle-stage {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.circle-stage svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* All circles centered at 170,170 */
+/* Radii: outer=155, mid=110, inner=65 */
+
+.ring-outer, .ring-mid, .ring-inner {
+  transform-origin: 170px 170px;
+  transition: r var(--ring-dur) var(--ring-ease),
+              fill var(--ring-dur) var(--ring-ease),
+              transform var(--ring-dur) var(--ring-ease);
+}
+
+/* ring label text */
+.ring-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  fill: white;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  transition: font-size var(--ring-dur) var(--ring-ease);
+  letter-spacing: 2px;
+}
+
+/* draw-in animation via stroke */
+.ring-draw {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  pointer-events: none;
+}
+
+
+
+/* quote bar */
+.quote-bar {
+  background: var(--ink);
+  color: #f5c518;
+  border-radius: var(--radius);
+  padding: 18px 26px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  letter-spacing: .5px;
+  line-height: 1.3;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+/* ── RESPONSE CARDS ── */
+.responses { display: grid; gap: 22px; }
+
+.r-card {
+  background: var(--cream-card);
+  border-radius: var(--radius);
+  padding: 0;
+  border: 1.5px solid var(--cream-mid);
+  box-shadow: 0 1px 10px rgba(0,0,0,.04);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.r-card:focus-within { border-color: var(--ink); }
+
+.r-accent { height: 4px; width: 100%; }
+.r-accent.c { background: var(--coral); }
+.r-accent.g { background: var(--green); }
+.r-accent.b { background: var(--blue); }
+
+.r-body { padding: 22px 24px 24px; }
+
+.r-tag {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.r-tag.c { background:rgba(232,94,60,.1);  color:var(--coral); }
+.r-tag.g { background:rgba(46,158,114,.1); color:var(--green); }
+.r-tag.b { background:rgba(76,181,232,.1); color:var(--blue);  }
+
+.r-q { font-size:18px; font-weight:700; line-height:1.35; margin-bottom:5px; }
+.r-sub { font-size:13.5px; font-weight:300; color:var(--ink-light); line-height:1.6; margin-bottom:14px; }
+
+textarea {
+  width: 100%;
+  background: var(--cream);
+  border: 1.5px solid var(--cream-mid);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 12px 14px;
+  resize: vertical;
+  min-height: 88px;
+  outline: none;
+  transition: border-color .2s, background .2s;
+}
+textarea::placeholder { color:var(--ink-light); font-style:italic; opacity:.7; }
+textarea:focus { border-color:var(--ink); background:#fff; }
+
+/* shift section */
+.shift {
+  margin-top: 24px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+}
+.shift-tag { font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:3.5px; text-transform:uppercase; color:#f5c518; margin-bottom:10px; }
+.shift-q { font-size:18px; font-weight:600; line-height:1.4; margin-bottom:5px; }
+.shift-sub { font-size:13.5px; font-weight:300; color:rgba(255,255,255,.5); line-height:1.6; margin-bottom:16px; }
+textarea.dark { background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.15); color:var(--cream); }
+textarea.dark::placeholder { color:rgba(255,255,255,.25); }
+textarea.dark:focus { border-color:#f5c518; background:rgba(255,255,255,.1); }
+
+/* footer */
+.footer { margin-top:48px; display:flex; justify-content:space-between; font-size:11px; color:var(--ink-light); letter-spacing:1.5px; text-transform:uppercase; border-top:1.5px solid var(--cream-mid); padding-top:18px; }
+
+@media (max-width:700px) {
+  .page { padding:32px 18px 56px; }
+  .diagram-layout { grid-template-columns:1fr; justify-items:center; }
+  .anno { transform:none !important; }
+  .circle-stage { width:280px; height:280px; }
+  h1 { font-size:54px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="day-tag">Day 1 &nbsp;·&nbsp; Worldview &amp; Spheres</div>
+  <h1>
+    <span class="c">WHO</span> ·
+    <span class="g">WHY</span> ·
+    <span class="b">WHAT</span>
+  </h1>
+  <p class="sub">Identity shapes everything. But the order matters. When the circles are in the wrong order, brokenness drives you. When WHO is at the centre, everything else flows from security.</p>
+
+  <!-- ═══ ANIMATED DIAGRAM ═══ -->
+  <div class="diagram-wrapper">
+    <div class="circle-stage">
+      <svg viewBox="0 0 340 340" id="mainSvg">
+        <circle id="ringOuter" cx="170" cy="170" r="155" />
+        <circle id="ringMid"   cx="170" cy="170" r="110" />
+        <circle id="ringInner" cx="170" cy="170" r="65"  />
+        <text id="labelOuter" class="ring-label" x="170" y="40">WHO</text>
+        <text id="labelMid"   class="ring-label" x="170" y="82">WHY</text>
+        <text id="labelInner" class="ring-label" x="170" y="170">WHAT</text>
+      </svg>
+    </div>
+  </div><!-- end diagram-wrapper -->
+
+  <!-- QUOTE -->
+  <div class="quote-bar">
+    "When you know your WHO, it defines your WHY, which gives power and righteousness to your WHAT."
+  </div>
+
+  <!-- RESPONSE CARDS -->
+  <div class="responses">
+
+    <div class="r-card">
+      <div class="r-accent c"></div>
+      <div class="r-body">
+        <div class="r-tag c">WHO — Your Identity</div>
+        <div class="r-q">Where is your sense of identity actually coming from right now?</div>
+        <div class="r-sub">Not the answer you think you should give — the honest one. What is the thing that, if you lost it or failed at it, would shake you most deeply? That's likely where your identity is actually rooted at this moment.</div>
+        <textarea placeholder="My identity is currently most rooted in… I know this because when that thing is threatened, I feel…"></textarea>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-accent g"></div>
+      <div class="r-body">
+        <div class="r-tag g">WHY — Your Passions</div>
+        <div class="r-q">What are the things that genuinely light you up — the passions, convictions, and desires that feel most truly yours?</div>
+        <div class="r-sub">Name two or three things you care about most deeply. The things that make you come alive, that you keep coming back to, that feel like they matter beyond just you. Now ask honestly: are these God-given desires that flow from who he made you to be — or are any of them driven by something you need to prove, achieve, or earn?</div>
+        <textarea placeholder="The passions and desires that feel most genuinely mine are… When I'm honest, some of these are driven by… rather than by who God made me to be…"></textarea>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-accent b"></div>
+      <div class="r-body">
+        <div class="r-tag b">WHAT — Your Daily Life &amp; Plans</div>
+        <div class="r-q">Looking at what you actually spend your time on — your daily habits and your biggest plans — which of these genuinely feel like an expression of who God made you?</div>
+        <div class="r-sub">Name a few of your regular activities or major life decisions you're working toward. For each one, ask: is this flowing from a secure sense of who I am in God — an act of co-creation — or is it driven by striving, filling a gap, or performing for someone's approval? What might need to shift?</div>
+        <textarea placeholder="Some of my main daily habits and big plans are… Some of these feel like genuine expressions of God's nature through me, like… But some might need to shift because they're coming from… rather than from who I am in him…"></textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHIFT -->
+  <div class="shift">
+    <div class="shift-tag">Reflection</div>
+    <div class="shift-q">What has been the most significant revelation of God's character you've encountered in this DTS — and what should it change?</div>
+    <div class="shift-sub">Not the most impressive moment, but the one that actually shifted something in how you understand who God is. How should that revelation reshape your sense of who you are — your WHO? And what does it mean for the direction and decisions you're stepping into after this season?</div>
+    <textarea class="dark" placeholder="The revelation of God that has shifted something in me is… It changes my WHO by… And when I think about what comes next after DTS, it means…"></textarea>
+  </div>
+
+  <div class="footer">
+    <span>Worldview &amp; Spheres Teaching Series</span>
+    <span>Day 1 of 5 &nbsp;·&nbsp; Worksheet 2 of 3</span>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+/* ══════════════════════════════════════
+   RING CONFIGURATION
+   Broken:  outer=WHO(coral) mid=WHY(green) inner=WHAT(blue)
+   Kingdom: outer=WHAT(blue) mid=WHY(green) inner=WHO(coral)
+══════════════════════════════════════ */
+const C = { coral:'#e85e3c', green:'#2e9e72', blue:'#4cb5e8' };
+
+const BROKEN = {
+  outer: { fill:C.coral, r:155, label:'WHO',  labelY:40,  size:32 },
+  mid:   { fill:C.green, r:110, label:'WHY',  labelY:82,  size:24 },
+  inner: { fill:C.blue,  r:65,  label:'WHAT', labelY:170, size:24 },
+};
+const KINGDOM = {
+  outer: { fill:C.blue,  r:155, label:'WHAT', labelY:40,  size:28 },
+  mid:   { fill:C.green, r:110, label:'WHY',  labelY:82,  size:24 },
+  inner: { fill:C.coral, r:65,  label:'WHO',  labelY:170, size:28 },
+};
+
+// Elements
+const rO = document.getElementById('ringOuter');
+const rM = document.getElementById('ringMid');
+const rI = document.getElementById('ringInner');
+const lO = document.getElementById('labelOuter');
+const lM = document.getElementById('labelMid');
+const lI = document.getElementById('labelInner');
+
+let isKingdom = false;
+
+function applyState(cfg, animate) {
+  const dur = animate ? '0.75s' : '0s';
+  const ease = 'cubic-bezier(.4,0,.2,1)';
+
+  [rO, rM, rI].forEach(el => {
+    el.style.transition = `fill ${dur} ${ease}`;
+  });
+
+  rO.setAttribute('fill', cfg.outer.fill);
+  rM.setAttribute('fill', cfg.mid.fill);
+  rI.setAttribute('fill', cfg.inner.fill);
+
+  // Animate radius via JS
+  if (animate) {
+    animR(rO, parseInt(rO.getAttribute('r')), cfg.outer.r, 750);
+    animR(rM, parseInt(rM.getAttribute('r')), cfg.mid.r,   750);
+    animR(rI, parseInt(rI.getAttribute('r')), cfg.inner.r, 750);
+  } else {
+    rO.setAttribute('r', cfg.outer.r);
+    rM.setAttribute('r', cfg.mid.r);
+    rI.setAttribute('r', cfg.inner.r);
+  }
+
+  // Labels
+  setTimeout(() => {
+    lO.textContent = cfg.outer.label;
+    lM.textContent = cfg.mid.label;
+    lI.textContent = cfg.inner.label;
+    lO.setAttribute('y', cfg.outer.labelY);
+    lM.setAttribute('y', cfg.mid.labelY);
+    lI.setAttribute('y', cfg.inner.labelY);
+    lO.setAttribute('font-size', cfg.outer.size);
+    lM.setAttribute('font-size', cfg.mid.size);
+    lI.setAttribute('font-size', cfg.inner.size);
+  }, animate ? 200 : 0);
+}
+
+function animR(el, from, to, dur) {
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // ease in-out quad
+    el.setAttribute('r', from + (to - from) * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function startLoop() {
+  setInterval(() => {
+    isKingdom = !isKingdom;
+    applyState(isKingdom ? KINGDOM : BROKEN, true);
+  }, 4000);
+}
+
+/* ── ENTRANCE ANIMATION ON LOAD ── */
+function drawEntrance() {
+  // Start rings at r=0, grow to broken state
+  rO.setAttribute('r', 0); rO.setAttribute('fill', C.coral);
+  rM.setAttribute('r', 0); rM.setAttribute('fill', C.green);
+  rI.setAttribute('r', 0); rI.setAttribute('fill', C.blue);
+  lO.textContent = 'WHO';  lO.setAttribute('y', 40);  lO.setAttribute('font-size', 32);
+  lM.textContent = 'WHY';  lM.setAttribute('y', 82);  lM.setAttribute('font-size', 24);
+  lI.textContent = 'WHAT'; lI.setAttribute('y', 170); lI.setAttribute('font-size', 24);
+
+  setTimeout(() => animR(rO, 0, 155, 700), 200);
+  setTimeout(() => animR(rM, 0, 110, 700), 450);
+  setTimeout(() => animR(rI, 0,  65, 700), 680);
+}
+
+window.addEventListener('load', () => { drawEntrance(); setTimeout(startLoop, 1200); });
+</script>
+</body>
+</html>
